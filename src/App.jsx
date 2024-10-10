@@ -1,6 +1,7 @@
 import React from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "./components/ui/button";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const Posts = [
   { id: 1, title: "Post 1", content: "This is the content of post 1" },
@@ -9,18 +10,53 @@ const Posts = [
 ];
 
 const App = () => {
+  // console.log(Posts);
+  const queryClient = useQueryClient();
+
   const postsQuery = useQuery({
     queryKey: ["posts"],
     queryFn: () => wait(1000).then(() => [...Posts]),
   });
 
-  if (postsQuery.isLoading) return <h1>Loading...</h1>;
+  const newPostMutation = useMutation({
+    mutationFn: (title) => {
+      return wait(1000).then(() =>
+        Posts.push({ id: crypto.randomUUID(), title })
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["posts"]);
+    },
+  });
+
+  if (postsQuery.isLoading)
+    return <h1 className="text-lg tracking-wide">Loading...</h1>;
   if (postsQuery.isError) return <pre>Error: {postsQuery.error.message}</pre>;
 
   return (
-    <div className="p-5">
+    <div className="p-5 flex flex-col gap-6">
       <div>Tanstack query</div>
-      <Button>Button</Button>
+      <div>
+        {postsQuery.data.map((data) => (
+          <div key={data.id}>{data.title}</div>
+        ))}
+      </div>
+      <div>
+        <Button
+          className="gap-2"
+          disabled={newPostMutation.isPending}
+          onClick={() => newPostMutation.mutate("new Post")}
+        >
+          {newPostMutation.isPending ? (
+            <>
+              <ReloadIcon className="size-4 animate-spin" />
+              <span>loading</span>
+            </>
+          ) : (
+            "Add new post"
+          )}
+        </Button>
+      </div>
     </div>
   );
 };
