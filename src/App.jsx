@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { Button } from "./components/ui/button";
 
 const Posts = [
   { id: 1, title: "Post 1", content: "This is the content of post 1" },
@@ -16,7 +17,12 @@ const App = () => {
   if (postsQuery.isLoading) return <h1>Loading...</h1>;
   if (postsQuery.isError) return <pre>Error: {postsQuery.error.message}</pre>;
 
-  return <div>Tanstack query</div>;
+  return (
+    <div className="p-5">
+      <div>Tanstack query</div>
+      <Button>Button</Button>
+    </div>
+  );
 };
 
 function wait(duration) {
