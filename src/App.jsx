@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import QueryPage from "./pages/QueryPage";
 import BooksPage from "./pages/BooksPage";
+import NewsPage from "./pages/NewsPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -14,6 +15,7 @@ const App = () => {
       <>
         <Route path="/" element={<QueryPage />} />
         <Route path="/books" element={<BooksPage />} />
+        <Route path="/news" element={<NewsPage />} />
       </>
     )
   );
