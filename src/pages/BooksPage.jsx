@@ -1,8 +1,18 @@
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
+import useBooksSearch from "@/hooks/useBooksSearch";
 import { Eye, Search } from "lucide-react";
-import React from "react";
 
 const BooksPage = () => {
+  const [query, setQuery] = useState("");
+  const [pageNumber, setPageNumber] = useState(2);
+  useBooksSearch(query, pageNumber);
+
+  const handleSearch = (e) => {
+    setQuery(e.target.value);
+    setPageNumber(1);
+  };
+
   return (
     <main className="container mx-auto p-5">
       <div className="relative flex-1 md:flex-grow-0 shrink-0 w-[280px]">
@@ -11,6 +21,7 @@ const BooksPage = () => {
           type="search"
           placeholder="Search here..."
           className="rounded-md bg-background pl-8 pr-8 shrink-0"
+          onChange={handleSearch}
         />
       </div>
       <div className="flex flex-col gap-3 my-5">
