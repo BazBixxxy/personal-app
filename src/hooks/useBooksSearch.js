@@ -1,18 +1,27 @@
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import React, { useEffect } from "react";
 
-const useBooksSearch = (query, pageNumber) => {
-  useEffect(() => {
-    axios({
-      method: "GET",
-      url: `https://api.itbook.store/1.0/search/${query}/${pageNumber}`,
-      // params: { q: query, page: pageNumber },
-    }).then((res) => {
-      console.log(res.data);
-    });
-  }, [query, pageNumber]);
+const useBooksSearch = () => {
+  const [loading, setLoading] = useState(false);
+  const [books, setBooks] = useState([]);
+  const [hasMore, setHasMore] = useState(false);
 
-  return null; // Return null for now
+  const getBooks = async (query, pageNumber) => {
+    try {
+      setLoading(true);
+      const res = await axios.get(
+        `https://api.itbook.store/1.0/search/${query}/${pageNumber}`
+      );
+      setBooks((prevBooks) => [...prevBooks, ...res.data.books]);
+      setHasMore(res.data.books.length > 0);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { loading, setLoading, setBooks, books, hasMore, getBooks };
 };
 
 export default useBooksSearch;
