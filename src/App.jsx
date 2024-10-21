@@ -9,6 +9,7 @@ import QueryPage from "./pages/QueryPage";
 import BooksPage from "./pages/BooksPage";
 import NewsPage from "./pages/NewsPage";
 import FormsPage from "./pages/FormsPage";
+import NewFormPage from "./pages/NewFormsPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/books" element={<BooksPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/forms" element={<FormsPage />} />
+        <Route path="/new-form" element={<NewFormPage />} />
       </>
     )
   );
