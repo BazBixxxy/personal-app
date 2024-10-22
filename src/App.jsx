@@ -10,6 +10,7 @@ import BooksPage from "./pages/BooksPage";
 import NewsPage from "./pages/NewsPage";
 import FormsPage from "./pages/FormsPage";
 import NewFormPage from "./pages/NewFormsPage";
+import Maps from "./pages/Maps";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/news" element={<NewsPage />} />
         <Route path="/forms" element={<FormsPage />} />
         <Route path="/new-form" element={<NewFormPage />} />
+        <Route path="/maps" element={<Maps />} />
       </>
     )
   );
