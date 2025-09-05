@@ -64,7 +64,7 @@ export default function AboutMe() {
 
       <div className="pt-4 border-t">
         <h2 className="text-sm ">Date of Birth</h2>
-        <div className="flex items-center justify-between border rounded-xl px-4 py-3 mt-1">
+        <div className="md:flex grid gap-2 items-center justify-between border rounded-xl px-4 py-3 mt-1">
           <p className="font-semibold text-lg">2nd May, 2001</p>
           <span className="text-sm font-mono border px-2 py-1 rounded-md shadow-sm">
             {ageString}
