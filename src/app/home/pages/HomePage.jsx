@@ -8,7 +8,7 @@ import Footer from "../components/footer";
 
 const HomePage = () => {
   return (
-    <main className="p-2 max-w-screen-xl mx-auto font-mono font-medium text-lg">
+    <main className="p-2 max-w-screen-xl mx-auto font-mono font-medium text-lg pb-20">
       <Typewriter />
       <div className="w-full lg:flex justify-between">
         <div className="p-3 w-full xl:w-2/3 2xl:w-7/12 grid gap-5">
