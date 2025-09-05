@@ -2,6 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import Typewriter from "../components/Typewriter";
 import AboutMe from "../components/about-me";
 import Work from "../components/work";
+import Socials from "../components/social";
 
 const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ const HomePage = () => {
           <AboutMe />
           <Separator className="my-5" />
           <Work />
+          <Socials />
         </div>
       </div>
     </main>
