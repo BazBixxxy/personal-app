@@ -4,6 +4,7 @@ import AboutMe from "../components/about-me";
 import Work from "../components/work";
 import Socials from "../components/social";
 import AskMe from "../components/ask-me-about";
+import Footer from "../components/footer";
 
 const HomePage = () => {
   return (
@@ -16,6 +17,7 @@ const HomePage = () => {
           <Work />
           <AskMe />
           <Socials />
+          <Footer />
         </div>
       </div>
     </main>
