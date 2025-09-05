@@ -44,13 +44,13 @@ export default function AboutMe() {
 
       {/* Name */}
       <div className="space-y-1">
-        <h2 className="text-sm text-muted-foreground">Name</h2>
+        <h2 className=" text-muted-foreground">Name</h2>
         <p className="font-semibold text-2xl">Kwagala Trevor Bazanye</p>
       </div>
 
       {/* Bio */}
       <div className="space-y-1">
-        <h2 className="text-sm text-muted-foreground">Bio</h2>
+        <h2 className=" text-muted-foreground">Bio</h2>
         <p className="font-medium leading-relaxed">
           I’m a Christian, entrepreneur, and software developer passionate about
           building scalable, user-centered systems. My journey blends{" "}
@@ -70,7 +70,7 @@ export default function AboutMe() {
 
       {/* DOB & Age */}
       <div className="pt-4 border-t">
-        <h2 className="text-sm text-muted-foreground">Date of Birth</h2>
+        <h2 className=" text-muted-foreground">Date of Birth</h2>
         <div className="md:flex grid gap-2 items-center justify-between border rounded-xl px-4 py-3 mt-1">
           <p className="font-semibold text-lg">2nd May, 2001</p>
           <Badge>{ageString}</Badge>

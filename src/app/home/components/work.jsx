@@ -5,11 +5,11 @@ export default function Work() {
   return (
     <>
       <div>
-        <h1 className="text-base uppercase font-light">My Work</h1>
+        <h1 className="text-muted-foreground uppercase font-light">My Work</h1>
       </div>
 
       {/* Bixxxy App */}
-      <div>
+      <div className="text-lg">
         <a
           href="https://bixxxy.com"
           target="_blank"
@@ -18,7 +18,7 @@ export default function Work() {
         >
           Bixxxy App <LinkIcon className="size-5" />
         </a>
-        <p className="text-base text-justify">
+        <p className="text-lg text-justify">
           A property listing application where users can search for properties,
           view property details, and contact sellers. The app is built with an
           integrated payment gateway for seamless transactions.
@@ -26,7 +26,7 @@ export default function Work() {
       </div>
 
       {/* Bixxxy Landlord */}
-      <div className="pb-5 border-b">
+      <div className="pb-5 border-b text-lg">
         <a
           href="https://landlord.bixxxy.com"
           target="_blank"
@@ -35,7 +35,7 @@ export default function Work() {
         >
           Bixxxy Landlord <LinkIcon className="size-5" />
         </a>
-        <p className="text-base text-justify">
+        <p className="text-lg text-justify">
           A property management system for property owners and managers with
           paid features that lets them register their properties and tenants,
           along with tools to help them manage their transactions.
@@ -52,11 +52,11 @@ export default function Work() {
         >
           Ovol Store <LinkIcon className="size-5" />
         </a>
-        <p className="text-base text-justify">
+        <p className="text-lg text-justify">
           An online store platform that connects vendors and customers, enabling
           smooth e-commerce transactions. It provides a user-friendly shopping
-          experience with product listings, order managment, secure checkout, vendor tools, and modern product
-          displays.
+          experience with product listings, order managment, secure checkout,
+          vendor tools, and modern product displays.
         </p>
       </div>
 
@@ -68,7 +68,7 @@ export default function Work() {
         >
           Blog <LinkIcon className="size-5" />
         </Link>
-        <p className="text-base">
+        <p className="text-lg">
           Here I write out my thoughts nothing personal 😂.
         </p>
       </div>
