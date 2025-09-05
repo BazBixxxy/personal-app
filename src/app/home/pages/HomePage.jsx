@@ -3,6 +3,7 @@ import Typewriter from "../components/Typewriter";
 import AboutMe from "../components/about-me";
 import Work from "../components/work";
 import Socials from "../components/social";
+import AskMe from "../components/ask-me-about";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
           <AboutMe />
           <Separator className="my-5" />
           <Work />
+          <AskMe />
           <Socials />
         </div>
       </div>
