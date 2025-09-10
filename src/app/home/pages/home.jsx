@@ -13,12 +13,14 @@ const Home = () => {
       className="mx-auto flex h-[350vh] w-screen flex-col items-center overflow-hidden px-4 pt-20"
     >
       <div className="mt-42 relative flex w-fit flex-col items-center justify-center gap-5 text-center text-[#1F3A4B] dark:text-primary">
-        <h1 className="font-jakarta-sans relative z-10 text-7xl font-medium tracking-[-0.08em] lg:text-9xl">
-          The Stroke <br /> That follows the <br />
-          Scroll Progress
+        <h1 className="relative z-10 text-7xl font-medium tracking-[-0.08em] lg:text-9xl">
+          Welcome To
+          <br /> Charis Place Online
         </h1>
-        <p className="font-jakarta-sans relative z-10 max-w-2xl text-xl font-medium">
-          Scroll down to see the effect
+        <p className="relative z-10 max-w-2xl text-xl font-medium">
+          "This is how we know what love is: Jesus Christ laid down his life for
+          us. And we ought to lay down our lives for our brothers and sisters."
+          1 John 3:16
         </p>
 
         <LinePath
@@ -27,7 +29,7 @@ const Home = () => {
         />
       </div>
 
-      <div className="rounded-4xl font-jakarta-sans w-full translate-y-[200vh] bg-[#1F3A4B] pb-10 text-[#FAFDEE]">
+      <div className="rounded-4xl w-full translate-y-[100vh] bg-[#1F3A4B] pb-10 text-[#FAFDEE]">
         <h1 className="mt-10 text-center text-[15.5vw] font-bold leading-[0.9] tracking-tighter lg:text-[16.6vw]">
           skiperui.com
         </h1>
