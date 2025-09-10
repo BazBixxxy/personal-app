@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <section
       ref={ref}
-      className="mx-auto flex h-[350vh] w-screen flex-col items-center overflow-hidden px-4 pt-20"
+      className="mx-auto flex h-screen w-screen flex-col items-center overflow-hidden px-4 pt-20"
     >
       <div className="mt-42 relative flex w-fit flex-col items-center justify-center gap-5 text-center text-[#1F3A4B] dark:text-primary">
         <h1 className="relative z-10 text-7xl font-medium tracking-[-0.08em] lg:text-9xl">
