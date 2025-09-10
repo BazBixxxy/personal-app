@@ -7,13 +7,14 @@ import {
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import HomePage from "./app/home/pages/HomePage";
+import Home from "./app/home/pages/home";
 
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<HomePage />} />
+          <Route index element={<Home />} />
         </Route>
       </>
     )
