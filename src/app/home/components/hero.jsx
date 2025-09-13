@@ -33,7 +33,7 @@ const Hero = () => {
 
 export default Hero;
 
-const LinePath = ({ className, scrollYProgress }) => {
+export const LinePath = ({ className, scrollYProgress }) => {
   const pathLength = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
 
   return (

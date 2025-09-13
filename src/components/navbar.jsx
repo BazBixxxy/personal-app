@@ -22,7 +22,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="shadow-sm border-b sticky top-0 z-50">
+    <header className="shadow-sm border-b sticky top-0 z-50 bg-background">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -77,7 +77,7 @@ export default function Navbar() {
         {/* Mobile Navigation Menu */}
         <div
           className={cn(
-            "xl:hidden transition-all duration-300 ease-in-out overflow-hidden",
+            "xl:hidden transition-all duration-300 ease-in-out overflow-hidden bg-background",
             isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           )}
         >
