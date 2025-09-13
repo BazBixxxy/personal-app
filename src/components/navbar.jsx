@@ -3,6 +3,8 @@ import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
+import { Separator } from "./ui/separator";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +33,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden xl:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {data.map((item, index) => (
                 <Button key={index} variant="ghost">
@@ -47,18 +49,15 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button (Desktop) */}
-          <div className="hidden md:block">
-            {/* <Link
-              href="/signup"
-              className="px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
-              Get Started
-            </Link> */}
+          <div className="hidden xl:flex items-center gap-5">
+            <AnimatedThemeToggler />
+            <Separator className="h-6" orientation="vertical" />
             <Button size="sm">Join Us</Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="xl:hidden flex items-center gap-3">
+            <AnimatedThemeToggler />
             <Button
               onClick={toggleMenu}
               size="icon"
@@ -78,7 +77,7 @@ export default function Navbar() {
         {/* Mobile Navigation Menu */}
         <div
           className={cn(
-            "md:hidden transition-all duration-300 ease-in-out overflow-hidden",
+            "xl:hidden transition-all duration-300 ease-in-out overflow-hidden",
             isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           )}
         >
