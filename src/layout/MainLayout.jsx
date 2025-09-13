@@ -1,5 +1,5 @@
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
-import DockComponent from "@/components/navbar";
+import DockComponent from "@/components/dock";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
