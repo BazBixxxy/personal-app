@@ -3,7 +3,7 @@ import UserStack from "./user-stack";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
+    <section className="min-h-screen flex flex-col items-center justify-center px-6 py-10">
       <div className="max-w-5xl mx-auto text-center space-y-12">
         {/* Main heading with improved typography */}
         <div className="space-y-8">
@@ -35,7 +35,7 @@ export default function Hero() {
           <div className="flex flex-col items-center gap-3">
             <UserStack />
             <p className="text-sm font-light text-foreground/60 tracking-wide">
-              Join our global community
+              Join our online community
             </p>
           </div>
 
