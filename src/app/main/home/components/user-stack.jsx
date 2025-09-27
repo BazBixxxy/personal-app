@@ -17,7 +17,7 @@ const UserStack = () => {
         </Avatar>
       ))}
       <div className="flex items-center justify-center w-10 h-10 ml-2 text-xs font-medium rounded-full bg-muted text-muted-foreground">
-        +10
+        +10k
       </div>
     </div>
   );
