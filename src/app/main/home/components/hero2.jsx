@@ -7,11 +7,13 @@ export default function Hero() {
       <div className="max-w-5xl mx-auto text-center space-y-12">
         {/* Main heading with improved typography */}
         <div className="space-y-8">
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-[-0.04em] leading-[0.9]">
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[-0.04em] leading-[0.9]">
             <span className="block font-extralight text-foreground/60">
               Welcome To
             </span>
-            <span className="block font-medium">Charis Place</span>
+            <span className="block font-medium whitespace-nowrap">
+              Charis Place
+            </span>
             <span className="block font-extralight text-foreground/80">
               Online
             </span>
