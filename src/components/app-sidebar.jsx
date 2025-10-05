@@ -16,6 +16,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router-dom";
+import Logo from "@/assets/logo/logo";
 
 // This is sample data.
 const data = {
@@ -43,12 +44,14 @@ const data = {
 export function AppSidebar({ ...props }) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader className="h-16 border-b border-sidebar-border">
-        <div className="flex place-items-center">
+      <SidebarHeader className="border-b border-sidebar-border">
+        {/* Logo */}
+        <div className="flex-shrink-0">
           <Link
-            to="/dashboard/articles"
-            className="text-2xl font-bold transition-colors size-full"
+            to="/"
+            className="text-2xl font-bold transition-colors flex items-center gap-2"
           >
+            <Logo />
             Charis Place
           </Link>
         </div>

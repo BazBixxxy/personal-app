@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 import { Separator } from "./ui/separator";
+import Logo from "@/assets/logo/logo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +28,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="/" className="text-2xl font-bold transition-colors">
+            <Link
+              to="/"
+              className="text-2xl font-bold transition-colors flex items-center gap-2"
+            >
+              <Logo />
               Charis Place
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
