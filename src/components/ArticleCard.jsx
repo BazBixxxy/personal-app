@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { Share2 } from "lucide-react";
 import { formatDate, handleShare } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const ArticleCard = ({ article }) => {
   return (
@@ -45,9 +46,11 @@ const ArticleCard = ({ article }) => {
 
       <CardContent className="flex-1 flex flex-col">
         <p className="text-sm mb-4 line-clamp-3 flex-1">{article.content}</p>
-        <Button variant="outline" className="w-full mt-auto">
-          Read More
-        </Button>
+        <Link to={`/articles/${article.id}`}>
+          <Button variant="outline" className="w-full mt-auto">
+            Read More
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   );
