@@ -13,8 +13,8 @@ export default function Navbar() {
   const data = [
     { label: "Home", href: "/" },
     { label: "Articles", href: "/articles" },
-    { label: "Conversations", href: "/conversations" },
-    { label: "Shop", href: "/shop" },
+    // { label: "Conversations", href: "/conversations" },
+    // { label: "Shop", href: "/shop" },
     { label: "About Us", href: "/about" },
   ];
 

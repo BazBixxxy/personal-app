@@ -70,8 +70,8 @@ export default function ArticleReaderPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="border-b sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="border-b sticky top-0 z-10 hidden">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back
@@ -83,7 +83,7 @@ export default function ArticleReaderPage() {
         </div>
       </div>
 
-      <article className="max-w-4xl mx-auto px-4 py-8">
+      <article className="max-w-6xl mx-auto px-4 py-8">
         <div className="mb-6">
           <h1 className="text-4xl md:text-5xl font-bold  mb-4 leading-tight">
             {article.title}
