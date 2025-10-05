@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { Share2 } from "lucide-react";
+import { formatDate, handleShare } from "@/lib/utils";
 
 const ArticleCard = ({ article }) => {
   return (
