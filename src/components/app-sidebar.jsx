@@ -12,9 +12,25 @@ import {
   SidebarMenuItem,
   SidebarRail,
   SidebarSeparator,
+  useSidebar,
 } from "@/components/ui/sidebar";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Home } from "lucide-react";
 import { NavMain } from "./nav-main";
+import { useNavigate } from "react-router-dom";
+import { useTheme } from "@/context/theme-provider";
+import { Button } from "./ui/button";
+import { LogOutIcon } from "lucide-react";
 
 // This is sample data.
 const data = {
@@ -64,6 +80,7 @@ export function AppSidebar({ ...props }) {
         <DatePicker />
         <Calendars calendars={data.calendars} />
         <NavMain items={data.navMain} />
+        <AlertExit />
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
@@ -76,5 +93,40 @@ export function AppSidebar({ ...props }) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
+  );
+}
+
+function AlertExit() {
+  const { theme } = useTheme();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/");
+    return;
+  };
+  const { open } = useSidebar();
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button
+          size={open ? "" : "icon"}
+          className="m-2 mb-0"
+          variant={theme === "light" ? "outline" : ""}
+        >
+          <span className={open ? "" : "sr-only"}>Exit Dashboard</span>
+          <LogOutIcon className={open ? "hidde ml-auto size-4" : "size-5"} />
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Exit Dashboard</AlertDialogTitle>
+          <AlertDialogDescription></AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>No</AlertDialogCancel>
+          <AlertDialogAction onClick={handleClick}>Yes</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
