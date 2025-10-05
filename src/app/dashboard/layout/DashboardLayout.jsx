@@ -17,6 +17,14 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 export default function DashboardLayout() {
+  const today = new Date();
+  // Format the selected date for display
+  const formattedDate = new Date(today).toLocaleDateString("en-US", {
+    year: "numeric",
+    day: "numeric",
+    month: "long",
+  });
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -28,6 +36,15 @@ export default function DashboardLayout() {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="font-medium">
+                    {formattedDate}
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </div>
           <div className="ml-auto">
             <AnimatedThemeToggler />
