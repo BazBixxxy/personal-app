@@ -1,4 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import LoadingSpinner from "@/components/loading-spinner";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,6 +12,8 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 
 export default function DashboardLayout() {
   return (
@@ -31,12 +34,10 @@ export default function DashboardLayout() {
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-5">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <div key={i} className="bg-muted/50 aspect-square rounded-xl" />
-            ))}
-          </div>
+        <div className="min-h-screen px-2 md:px-4 lg:px-6">
+          <Suspense fallback={<LoadingSpinner />}>
+            <Outlet />
+          </Suspense>
         </div>
       </SidebarInset>
     </SidebarProvider>

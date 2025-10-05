@@ -19,7 +19,7 @@ const App = () => {
         </Route>
         {/* dashboard layout */}
         <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route path="/dashboard/articles" element={<DashboardArticles />} />
+          <Route path="/dashboard/home" element={<DashboardArticles />} />
         </Route>
       </>
     )

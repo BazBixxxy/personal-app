@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Plus } from "lucide-react";
 
 import { Calendars } from "@/components/calendars";
 import { DatePicker } from "@/components/date-picker";
@@ -8,15 +7,14 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { Link } from "react-router-dom";
-import Logo from "@/assets/logo/logo";
+import { Home } from "lucide-react";
+import { NavMain } from "./nav-main";
 
 // This is sample data.
 const data = {
@@ -25,41 +23,48 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
+  navMain: [
+    {
+      title: "Dashboard",
+      url: "/dashboard/home",
+      icon: Home,
+      isActive: true,
+      items: [
+        {
+          title: "Overview",
+          url: "/dashboard/home",
+        },
+        {
+          title: "New Article",
+          url: `/dashboard/articles/add`,
+        },
+      ],
+    },
+  ],
   calendars: [
-    {
-      name: "My Calendars",
-      items: ["Personal", "Work", "Family"],
-    },
-    {
-      name: "Favorites",
-      items: ["Holidays", "Birthdays"],
-    },
-    {
-      name: "Other",
-      items: ["Travel", "Reminders", "Deadlines"],
-    },
+    // {
+    //   name: "My Calendars",
+    //   items: ["Personal", "Work", "Family"],
+    // },
+    // {
+    //   name: "Favorites",
+    //   items: ["Holidays", "Birthdays"],
+    // },
+    // {
+    //   name: "Other",
+    //   items: ["Travel", "Reminders", "Deadlines"],
+    // },
   ],
 };
 
 export function AppSidebar({ ...props }) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader className="border-b border-sidebar-border">
-        {/* Logo */}
-        <div className="flex-shrink-0">
-          <Link
-            to="/"
-            className="text-2xl font-bold transition-colors flex items-center gap-2"
-          >
-            <Logo />
-            Charis Place
-          </Link>
-        </div>
-      </SidebarHeader>
       <SidebarContent>
         <DatePicker />
         <SidebarSeparator className="mx-0" />
         <Calendars calendars={data.calendars} />
+        <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
