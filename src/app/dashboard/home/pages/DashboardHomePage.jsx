@@ -110,9 +110,7 @@ export default function DashboardHomePage() {
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">Articles</h1>
-          <p className="">
-            Thoughts on building, leading, and solving problems
-          </p>
+          <p className="">Your thoughts on the word of God, prayer, and ministry</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

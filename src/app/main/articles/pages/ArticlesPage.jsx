@@ -111,7 +111,7 @@ const ArticlesPage = () => {
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">Articles</h1>
           <p className="">
-            Thoughts on building, leading, and solving problems
+            Thoughts on the word of God, prayer, and ministry
           </p>
         </div>
 
