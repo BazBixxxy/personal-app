@@ -104,7 +104,7 @@ const articles = [
   },
 ];
 
-export default function ArticleCards() {
+export default function DashboardHomePage() {
   return (
     <main className="py-5">
       <div className="max-w-6xl mx-auto">

@@ -10,6 +10,7 @@ import HomePage from "./app/main/home/pages/HomePage";
 import DashboardLayout from "./app/dashboard/layout/DashboardLayout";
 import NewArticlePage from "./app/dashboard/articles/add/pages/NewArticlePage";
 import DashboardHomePage from "./app/dashboard/home/pages/DashboardHomePage";
+import ArticlesPage from "./app/main/articles/pages/ArticlesPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -17,6 +18,7 @@ const App = () => {
       <>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="/articles" element={<ArticlesPage />} />
         </Route>
         {/* dashboard layout */}
         <Route path="/dashboard" element={<DashboardLayout />}>
