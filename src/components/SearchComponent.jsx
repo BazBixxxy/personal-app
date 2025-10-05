@@ -19,7 +19,7 @@ const SearchComponent = () => {
         searchParams.delete("searchTerm");
         setSearchParams(searchParams);
       }
-    }, 1000); // debounce for smoother typing
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [query, searchParams, setSearchParams]);
@@ -28,16 +28,14 @@ const SearchComponent = () => {
     <div className="relative flex items-center w-full md:w-[200px] lg:w-[320px]">
       <Input
         type="search"
-        placeholder="Search..."
+        placeholder="Search article..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="w-full rounded-lg bg-background pl-10 pr-10"
       />
-      <Button
+      <button
         type="button"
-        variant="ghost"
-        size="icon"
-        className="absolute left-1"
+        className="absolute left-1 p-2"
         onClick={() => {
           if (query.trim()) {
             searchParams.set("searchTerm", query.trim());
@@ -46,7 +44,7 @@ const SearchComponent = () => {
         }}
       >
         <Search className="h-4 w-4 text-muted-foreground" />
-      </Button>
+      </button>
     </div>
   );
 };
