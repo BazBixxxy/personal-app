@@ -62,7 +62,6 @@ export function AppSidebar({ ...props }) {
     <Sidebar {...props}>
       <SidebarContent>
         <DatePicker />
-        <SidebarSeparator className="mx-0" />
         <Calendars calendars={data.calendars} />
         <NavMain items={data.navMain} />
       </SidebarContent>
