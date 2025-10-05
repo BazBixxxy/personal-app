@@ -1,5 +1,6 @@
 import React from "react";
 import ArticleCard from "@/components/ArticleCard";
+import SearchComponent from "@/components/SearchComponent";
 
 const articles = [
   {
@@ -109,10 +110,13 @@ const ArticlesPage = () => {
     <main className="p-2 md:p-4 lg:p-6 xl:p-8">
       <div className="max-w-screen-2xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Articles</h1>
-          <p className="">
-            Thoughts on the word of God, prayer, and ministry
-          </p>
+          <div>
+            <h1 className="text-4xl font-bold mb-2">Articles</h1>
+            <p className="">
+              Thoughts on the word of God, prayer, and ministry
+            </p>
+          </div>
+          <SearchComponent />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
