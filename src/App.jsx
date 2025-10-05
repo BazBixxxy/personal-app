@@ -8,8 +8,8 @@ import {
 import MainLayout from "./layout/MainLayout";
 import HomePage from "./app/main/home/pages/HomePage";
 import DashboardLayout from "./app/dashboard/layout/DashboardLayout";
-import DashboardArticles from "./app/dashboard/articles/pages/ArticlesPage";
 import NewArticlePage from "./app/dashboard/articles/add/pages/NewArticlePage";
+import DashboardHomePage from "./app/dashboard/home/pages/DashboardHomePage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -20,7 +20,7 @@ const App = () => {
         </Route>
         {/* dashboard layout */}
         <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route path="/dashboard/home" element={<DashboardArticles />} />
+          <Route path="/dashboard/home" element={<DashboardHomePage />} />
           <Route path="/dashboard/articles/add" element={<NewArticlePage />} />
         </Route>
       </>
