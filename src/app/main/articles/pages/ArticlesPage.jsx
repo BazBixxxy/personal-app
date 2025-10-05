@@ -109,7 +109,7 @@ const ArticlesPage = () => {
   return (
     <main className="p-2 md:p-4 lg:p-6 xl:p-8">
       <div className="max-w-screen-2xl mx-auto">
-        <div className="mb-8">
+        <div className="mb-8 grid md:flex items-end gap-3 justify-between">
           <div>
             <h1 className="text-4xl font-bold mb-2">Articles</h1>
             <p className="">
