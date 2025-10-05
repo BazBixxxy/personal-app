@@ -1,7 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Share2 } from "lucide-react";
+import ArticleCard from "@/components/ArticleCard";
 
 const articles = [
   {
@@ -106,32 +104,6 @@ const articles = [
   },
 ];
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-};
-
-const handleShare = (article) => {
-  if (navigator.share) {
-    navigator
-      .share({
-        title: article.title,
-        text: article.content.substring(0, 100) + "...",
-        url: window.location.href + "/article/" + article.id,
-      })
-      .catch(() => {});
-  } else {
-    navigator.clipboard.writeText(
-      window.location.href + "/article/" + article.id
-    );
-    alert("Link copied to clipboard!");
-  }
-};
-
 export default function ArticleCards() {
   return (
     <main className="py-5">
@@ -145,57 +117,7 @@ export default function ArticleCards() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article) => (
-            <Card
-              key={article.id}
-              className="flex flex-col hover:shadow-lg transition-shadow relative"
-            >
-              <Button
-                size="icon"
-                variant="secondary"
-                className="absolute top-2 right-2 z-10"
-                onClick={() => handleShare(article)}
-              >
-                <Share2 className="h-4 w-4" />
-              </Button>
-
-              {article.image && (
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-48 object-cover rounded-t-lg"
-                />
-              )}
-
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-3">
-                  <img
-                    src={article.author.profilePicture}
-                    alt={`${article.author.firstName} ${article.author.lastName}`}
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <div className="text-sm">
-                    <div className="font-medium">
-                      {article.author.firstName} {article.author.lastName}
-                    </div>
-                    <div className="text-muted-foreground">
-                      {formatDate(article.createdAt)}
-                    </div>
-                  </div>
-                </div>
-                <CardTitle className="text-xl line-clamp-2">
-                  {article.title}
-                </CardTitle>
-              </CardHeader>
-
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-sm mb-4 line-clamp-3 flex-1">
-                  {article.content}
-                </p>
-                <Button variant="outline" className="w-full mt-auto">
-                  Read More
-                </Button>
-              </CardContent>
-            </Card>
+            <ArticleCard article={article} key={article.id} />
           ))}
         </div>
       </div>
