@@ -34,7 +34,7 @@ export default function Hero() {
 
         {/* CTA section with refined spacing */}
         <div className="space-y-6">
-          <div className="flex flex-col items-center gap-3">
+          <div className="fle hidden flex-col items-center gap-3">
             <UserStack />
             <p className="text-sm font-light text-foreground/60 tracking-wide">
               Join our online community
@@ -45,7 +45,7 @@ export default function Hero() {
             size="lg"
             className="px-8 py-6 text-base font-medium tracking-wide rounded-full hover:scale-105 transition-transform duration-200"
           >
-            Join Us Today
+            Read Articles
           </Button>
         </div>
       </div>
