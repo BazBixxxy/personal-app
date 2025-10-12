@@ -1,9 +1,9 @@
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Share2, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { BookmarkButton } from "@/components/shsfui/bookmark-icon-button";
 
 const article = {
   id: 1,
@@ -66,33 +66,26 @@ const handleShare = () => {
 };
 
 export default function ArticleReaderPage() {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen">
-      <div className="border-b sticky top-0 z-10 hidden">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back
-          </Button>
-          <Button variant="ghost" size="sm" onClick={handleShare}>
-            <Share2 className="h-4 w-4 mr-2" />
-            Share
-          </Button>
-        </div>
-      </div>
-
       <article className="max-w-6xl mx-auto px-4 py-8">
         <div className="mb-6">
           <h1 className="text-4xl md:text-5xl font-bold  mb-4 leading-tight">
             {article.title}
           </h1>
 
-          <div className="flex items-center gap-4 text-sm  mb-6">
-            <span>{formatDate(article.createdAt)}</span>
-            <span>•</span>
-            <span>{calculateReadTime(article.content)}</span>
+          <div className="flex items-center justify-between gap-3 mb-6">
+            <div className="flex items-center gap-4 text-sm ">
+              <span>{formatDate(article.createdAt)}</span>
+              <span>•</span>
+              <span>{calculateReadTime(article.content)}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <BookmarkButton />
+              <Button variant="ghost" size="icon" onClick={handleShare}>
+                <Share2 />
+              </Button>
+            </div>
           </div>
         </div>
 
