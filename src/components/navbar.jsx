@@ -33,7 +33,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link
               to="/"
-              className="text-2xl font-bold transition-colors flex items-center gap-2"
+              className="md:text-2xl font-bold transition-colors flex items-center gap-2 "
             >
               <Logo />
               Charis Place
@@ -80,6 +80,7 @@ export default function Navbar() {
                 <Menu className="block h-6 w-6" aria-hidden="true" />
               )}
             </Button>
+            <LoginComponent />
           </div>
         </div>
 

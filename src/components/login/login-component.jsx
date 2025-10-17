@@ -16,7 +16,12 @@ const LoginComponent = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>
+        <Button
+          variant="secondary"
+          size="icon"
+          title="signin"
+          className="rounded-full"
+        >
           <User />
         </Button>
       </DialogTrigger>
