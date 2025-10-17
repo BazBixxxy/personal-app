@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 import { Separator } from "./ui/separator";
 import Logo from "@/assets/logo/logo";
+import LoginComponent from "./login/login-component";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +60,8 @@ export default function Navbar() {
           <div className="hidden xl:flex items-center gap-5">
             <AnimatedThemeToggler />
             <Separator className="h-6" orientation="vertical" />
-            <Button size="sm">Login</Button>
+            {/* <Button size="sm">Login</Button> */}
+            <LoginComponent />
           </div>
 
           {/* Mobile menu button */}
