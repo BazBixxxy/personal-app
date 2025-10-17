@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import Navbar from "@/components/navbar";
 import { Suspense } from "react";
 import ScrollToTop from "@/components/scroll-top";
+import Footer from "@/components/footer";
+import LoadingSpinner from "@/components/loading-spinner";
 
 const MainLayout = () => {
   return (
@@ -13,6 +15,7 @@ const MainLayout = () => {
           <Outlet />
         </Suspense>
       </div>
+      <Footer />
     </>
   );
 };
