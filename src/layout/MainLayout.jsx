@@ -1,15 +1,17 @@
-import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
-import DockComponent from "@/components/dock";
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "@/components/navbar";
+import { Suspense } from "react";
+import ScrollToTop from "@/components/scroll-top";
 
 const MainLayout = () => {
   return (
     <>
       <Navbar />
       <div className="my-16">
-        <Outlet />
+        <Suspense fallback={<LoadingSpinner />}>
+          <ScrollToTop />
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );
