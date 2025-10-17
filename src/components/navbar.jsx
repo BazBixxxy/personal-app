@@ -59,7 +59,7 @@ export default function Navbar() {
           <div className="hidden xl:flex items-center gap-5">
             <AnimatedThemeToggler />
             <Separator className="h-6" orientation="vertical" />
-            <Button size="sm">Join Us</Button>
+            <Button size="sm">Login</Button>
           </div>
 
           {/* Mobile menu button */}
@@ -104,7 +104,7 @@ export default function Navbar() {
                 Get Started
               </Link> */}
               <Button size="sm" className="w-full">
-                Join Us
+                Login
               </Button>
             </div>
           </div>
