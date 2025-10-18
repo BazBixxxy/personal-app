@@ -18,8 +18,12 @@ import SignupPage from "./app/auth/pages/signup-page";
 import LoginPage from "./app/auth/pages/login-page";
 import ForgotPasswordPage from "./app/auth/pages/forgot-password";
 import EmailSentPage from "./app/auth/pages/email-sent";
+import { useAuthContext } from "./context/auth-context";
+import { Navigate } from "react-router-dom";
 
 const App = () => {
+  const { authUser } = useAuthContext();
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
