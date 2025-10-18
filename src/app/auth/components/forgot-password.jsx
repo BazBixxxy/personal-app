@@ -15,9 +15,7 @@ import { Loader2, Mail } from "lucide-react";
 import { forgotPasswordSchema } from "@/lib/schema";
 import useForgotPassword from "../hooks/useForgotPassword";
 import { Link } from "react-router-dom";
-import Logo from "@/components/logo/logo";
-import TermsAndConditions from "@/components/policies/terms-and-conditions";
-import PrivacyPolicies from "@/components/policies/privacy-policies";
+import Logo from "@/assets/logo/logo";
 
 export default function ForgotPasswordForm({ className, ...props }) {
   const { loading, forgotPassword } = useForgotPassword();
@@ -96,8 +94,8 @@ export default function ForgotPasswordForm({ className, ...props }) {
         </form>
       </Form>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our <TermsAndConditions /> and{" "}
-        <PrivacyPolicies />.
+        By clicking continue, you agree to our terms and conditions and privacy
+        policies.
       </div>
     </div>
   );

@@ -18,9 +18,7 @@ import { useSearchParams } from "react-router-dom";
 import { loginSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { EyeOffIcon } from "lucide-react";
-import Logo from "@/components/logo/logo";
-import TermsAndConditions from "@/components/policies/terms-and-conditions";
-import PrivacyPolicies from "@/components/policies/privacy-policies";
+import Logo from "@/assets/logo/logo";
 import useLogin from "@/hooks/auth/useLogin";
 
 export function LoginForm({ className, ...props }) {
@@ -171,8 +169,8 @@ export function LoginForm({ className, ...props }) {
         </form>
       </Form>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our <TermsAndConditions /> and{" "}
-        <PrivacyPolicies />.
+        By clicking continue, you agree to our terms and conditions and privacy
+        policies.
       </div>
     </div>
   );

@@ -14,6 +14,10 @@ import ArticlesPage from "./app/main/articles/pages/ArticlesPage";
 import ArticlePage from "./app/main/articles/article/pages/ArticlePage";
 import ErrorBoundary from "./pages/ErrorBoundaryPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SignupPage from "./app/auth/pages/signup-page";
+import LoginPage from "./app/auth/pages/login-page";
+import ForgotPasswordPage from "./app/auth/pages/forgot-password";
+import EmailSentPage from "./app/auth/pages/email-sent";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -40,7 +44,7 @@ const App = () => {
           errorElement={<ErrorBoundary />}
           element={authUser ? <Navigate to={"/"} /> : <EmailSentPage />}
         />
-        <Route
+        {/* <Route
           path="/general-policies"
           errorElement={<ErrorBoundary />}
           element={<GeneralPoliciesPage />}
@@ -54,7 +58,7 @@ const App = () => {
           path="/privacy-policies"
           errorElement={<ErrorBoundary />}
           element={<PrivacyPoliciesPage />}
-        />
+        /> */}
 
         {/* main layout */}
         <Route path="/" element={<MainLayout />}>

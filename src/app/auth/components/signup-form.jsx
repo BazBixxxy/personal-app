@@ -26,10 +26,8 @@ import { EyeOff } from "lucide-react";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import Logo from "@/components/logo/logo";
+import Logo from "@/assets/logo/logo";
 import GoogleAuth from "./google-auth";
-import TermsAndConditions from "@/components/policies/terms-and-conditions";
-import PrivacyPolicies from "@/components/policies/privacy-policies";
 
 export default function SignupForm({ className, ...props }) {
   const { loading, signup } = useSignup();
@@ -322,8 +320,8 @@ export default function SignupForm({ className, ...props }) {
         </form>
       </Form>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our <TermsAndConditions /> and{" "}
-        <PrivacyPolicies />.
+        By clicking continue, you agree to our terms and conditions and privacy
+        policies.
       </div>
     </div>
   );
