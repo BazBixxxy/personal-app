@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
-import { Separator } from "./ui/separator";
+import { AnimatedThemeToggler } from "../magicui/animated-theme-toggler";
+import { Separator } from "../ui/separator";
 import Logo from "@/assets/logo/logo";
-import LoginComponent from "./login/login-component";
+import LoginComponent from "../login/login-component";
+import { useAuthContext } from "@/context/auth-context";
+import ProfileComponent from "../profile/profile-component";
 
 export default function Navbar() {
+  const { authUser } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const data = [
@@ -60,8 +63,7 @@ export default function Navbar() {
           <div className="hidden xl:flex items-center gap-5">
             <AnimatedThemeToggler />
             <Separator className="h-6" orientation="vertical" />
-            {/* <Button size="sm">Login</Button> */}
-            <LoginComponent />
+            {authUser ? <ProfileComponent /> : <LoginComponent />}
           </div>
 
           {/* Mobile menu button */}
@@ -80,6 +82,7 @@ export default function Navbar() {
                 <Menu className="block h-6 w-6" aria-hidden="true" />
               )}
             </Button>
+
             <LoginComponent />
           </div>
         </div>

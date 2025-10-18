@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { User } from "lucide-react";
-import { LoginForm } from "../../app/auth/components/login-form";
+import { LoginForm } from "@/app/auth/components/login-form";
 
 const LoginComponent = () => {
   return (
