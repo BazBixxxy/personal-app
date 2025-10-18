@@ -12,11 +12,10 @@ import {
 } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useAuthContext } from "@/context/auth-context";
-// import useLogout from "@/app/auth/components/useLogout";
 import { useLocation } from "react-router-dom";
 import useLogout from "@/app/auth/hooks/useForgotPassword";
 import ProfileHeader from "./profile-header";
-// import ProfileContent from "./profile-content";
+import ProfileContent from "./profile-content";
 
 export default function ProfileComponent() {
   const { pathname } = useLocation();

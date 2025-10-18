@@ -28,7 +28,7 @@ const LoginComponent = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle></DialogTitle>
           <DialogDescription>
             <LoginForm />
           </DialogDescription>
