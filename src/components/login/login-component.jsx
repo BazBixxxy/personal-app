@@ -11,6 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { User } from "lucide-react";
+import { LoginForm } from "./login-form";
 
 const LoginComponent = () => {
   return (
@@ -29,8 +30,7 @@ const LoginComponent = () => {
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            <LoginForm />
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
