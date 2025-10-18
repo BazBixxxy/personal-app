@@ -70,8 +70,12 @@ const App = () => {
           <Route path="/articles" element={<ArticlesPage />} />
           <Route path="/articles/:id" element={<ArticlePage />} />
         </Route>
+
         {/* dashboard layout */}
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route
+          path="/dashboard"
+          element={authUser ? <DashboardLayout /> : <Navigate to={"/login"} />}
+        >
           <Route path="/dashboard/home" element={<DashboardHomePage />} />
           <Route path="/dashboard/articles/add" element={<NewArticlePage />} />
         </Route>
