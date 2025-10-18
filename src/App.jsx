@@ -12,11 +12,51 @@ import NewArticlePage from "./app/dashboard/articles/add/pages/NewArticlePage";
 import DashboardHomePage from "./app/dashboard/home/pages/DashboardHomePage";
 import ArticlesPage from "./app/main/articles/pages/ArticlesPage";
 import ArticlePage from "./app/main/articles/article/pages/ArticlePage";
+import ErrorBoundary from "./pages/ErrorBoundaryPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
+        {/* auth routes */}
+        <Route
+          path="/signup"
+          errorElement={<ErrorBoundary />}
+          element={authUser ? <Navigate to={"/"} /> : <SignupPage />}
+        />
+        <Route
+          path="/login"
+          errorElement={<ErrorBoundary />}
+          element={authUser ? <Navigate to={"/"} /> : <LoginPage />}
+        />
+        <Route
+          path="/forgot-password"
+          errorElement={<ErrorBoundary />}
+          element={authUser ? <Navigate to={"/"} /> : <ForgotPasswordPage />}
+        />
+        <Route
+          path="/email-sent"
+          errorElement={<ErrorBoundary />}
+          element={authUser ? <Navigate to={"/"} /> : <EmailSentPage />}
+        />
+        <Route
+          path="/general-policies"
+          errorElement={<ErrorBoundary />}
+          element={<GeneralPoliciesPage />}
+        />
+        <Route
+          path="/terms-and-conditions"
+          errorElement={<ErrorBoundary />}
+          element={<TermsAndConditionsPage />}
+        />
+        <Route
+          path="/privacy-policies"
+          errorElement={<ErrorBoundary />}
+          element={<PrivacyPoliciesPage />}
+        />
+
+        {/* main layout */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/articles" element={<ArticlesPage />} />
@@ -27,6 +67,8 @@ const App = () => {
           <Route path="/dashboard/home" element={<DashboardHomePage />} />
           <Route path="/dashboard/articles/add" element={<NewArticlePage />} />
         </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
       </>
     )
   );
