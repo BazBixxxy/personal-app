@@ -1,6 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import LoadingSpinner from "@/components/loading-spinner";
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
+import ProfileComponent from "@/components/profile/profile-component";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -29,7 +30,7 @@ export default function DashboardLayout() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="bg-background sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b px-4">
+        <header className="bg-background sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b px-4 z-20">
           <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
             <Separator
@@ -46,8 +47,9 @@ export default function DashboardLayout() {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-          <div className="ml-auto">
+          <div className="ml-auto flex items-center gap-2">
             <AnimatedThemeToggler />
+            <ProfileComponent />
           </div>
         </header>
         <div className="min-h-screen px-2 md:px-4 lg:px-6">

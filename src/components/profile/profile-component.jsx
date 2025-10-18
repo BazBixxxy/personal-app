@@ -12,13 +12,11 @@ import {
 } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useAuthContext } from "@/context/auth-context";
-import { useLocation } from "react-router-dom";
 import useLogout from "@/app/auth/hooks/useForgotPassword";
 import ProfileHeader from "./profile-header";
 import ProfileContent from "./profile-content";
 
 export default function ProfileComponent() {
-  const { pathname } = useLocation();
   const { logout } = useLogout();
   const { authUser } = useAuthContext();
 
@@ -57,23 +55,15 @@ export default function ProfileComponent() {
           <ProfileContent />
         </div>
         <DialogFooter className="border-t px-6 py-4">
-          {pathname.startsWith("/dashboard") ? (
-            <DialogClose asChild>
-              <Button type="button" variant="outline" hidden>
-                Close
-              </Button>
-            </DialogClose>
-          ) : (
-            <DialogClose asChild>
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={() => logout()}
-              >
-                Logout
-              </Button>
-            </DialogClose>
-          )}
+          <DialogClose asChild>
+            <Button
+              type="button"
+              variant="destructive"
+              onClick={() => logout()}
+            >
+              Logout
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
