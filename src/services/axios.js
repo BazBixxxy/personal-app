@@ -8,7 +8,7 @@ axios.defaults.withCredentials = true;
 
 // 🔹 Public axios instance
 export const instance = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: `${baseURL}/api`,
   withCredentials: true,
 });
 
