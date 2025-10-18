@@ -44,9 +44,11 @@ export default function ForgotPasswordForm({ className, ...props }) {
                 <div className="flex size-8 items-center justify-center rounded-md">
                   <Logo className="size-6" />
                 </div>
-                <span className="sr-only">Ovol Store Inc.</span>
+                <span className="sr-only">Charis Place Inc.</span>
               </Link>
-              <h1 className="text-xl font-bold">Welcome to Ovol Store Inc.</h1>
+              <h1 className="text-xl font-bold">
+                Welcome to Charis Place Inc.
+              </h1>
               <div className="text-center text-sm">
                 No need to change your password?{" "}
                 <Link to="/login" className="underline underline-offset-4">

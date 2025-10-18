@@ -30,7 +30,7 @@ const useGoogleOAuth = () => {
 
       const res = await authApi.google(userData);
       const user = res.data?.user;
-      localStorage.setItem("ovolUser", JSON.stringify(user));
+      localStorage.setItem("charisUser", JSON.stringify(user));
       setAuthUser(user);
       // console.log(user);
       toast.success("Login successful!");

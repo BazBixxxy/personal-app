@@ -18,7 +18,7 @@ const useUpdateAvatars = () => {
         ...prev,
         profilePicture: updatedProfilePicture,
       }));
-      localStorage.setItem("ovolUser", JSON.stringify(res.data.user));
+      localStorage.setItem("charisUser", JSON.stringify(res.data.user));
 
       toast.success("Profile picture updated successfully");
     } catch (error) {
@@ -38,7 +38,7 @@ const useUpdateAvatars = () => {
       const updatedBanner = res.data.user.banner;
 
       setAuthUser((prev) => ({ ...prev, banner: updatedBanner }));
-      localStorage.setItem("ovolUser", JSON.stringify(res.data.user));
+      localStorage.setItem("charisUser", JSON.stringify(res.data.user));
 
       toast.success("Banner updated successfully");
     } catch (error) {

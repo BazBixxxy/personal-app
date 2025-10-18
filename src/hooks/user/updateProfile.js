@@ -14,7 +14,7 @@ const useUpdateProfile = () => {
       const response = res.data.user;
       // console.log(response);
       setAuthUser(response);
-      localStorage.setItem("ovolUser", JSON.stringify(response));
+      localStorage.setItem("charisUser", JSON.stringify(response));
       toast.success("Updated profile successfully");
     } catch (error) {
       console.error("Error updating profile:", error);

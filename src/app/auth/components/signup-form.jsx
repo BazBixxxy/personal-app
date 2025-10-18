@@ -63,9 +63,11 @@ export default function SignupForm({ className, ...props }) {
                 <div className="flex size-8 items-center justify-center rounded-md">
                   <Logo className="size-6" />
                 </div>
-                <span className="sr-only">Ovol Store.</span>
+                <span className="sr-only">Charis Place.</span>
               </Link>
-              <h1 className="text-xl font-bold">Welcome to Ovol Store Inc.</h1>
+              <h1 className="text-xl font-bold">
+                Welcome to Charis Place Inc.
+              </h1>
               <div className="text-center text-sm">
                 Already have an account?{" "}
                 <Link to="/login" className="underline underline-offset-4">

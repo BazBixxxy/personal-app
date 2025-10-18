@@ -15,7 +15,7 @@ const useLogin = () => {
 
       const res = await authApi.login(values);
       const user = res.data?.user;
-      localStorage.setItem("ovolUser", JSON.stringify(user));
+      localStorage.setItem("charisUser", JSON.stringify(user));
       setAuthUser(user);
       // console.log(user);
       toast.success("Login successful!");

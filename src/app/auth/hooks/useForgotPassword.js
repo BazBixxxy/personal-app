@@ -12,7 +12,7 @@ const useLogout = () => {
       loading: "Logging out...",
       success: () => {
         setAuthUser(null);
-        localStorage.removeItem("ovolUser");
+        localStorage.removeItem("charisUser");
         navigate("/login");
         return "Logout successful!";
       },
