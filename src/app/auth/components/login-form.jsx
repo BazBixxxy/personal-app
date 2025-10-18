@@ -51,12 +51,14 @@ export function LoginForm({ className, ...props }) {
                 to="/"
                 className="flex flex-col items-center gap-2 font-medium"
               >
-                <div className="flex size-8 items-center justify-center rounded-md">
+                <div className="flex size-8 items-center justify-center rounded-md text-primary">
                   <Logo className="size-6" />
                 </div>
                 <span className="sr-only">Charis Place</span>
               </Link>
-              <h1 className="text-xl font-bold">Welcome to Charis Place.</h1>
+              <h1 className="text-xl font-bold text-primary">
+                Login to Charis Place.
+              </h1>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
                 <Link to="/signup" className="underline underline-offset-4">
@@ -64,7 +66,7 @@ export function LoginForm({ className, ...props }) {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-col gap-6">
+            <div className="grid gap-6">
               <div className="grid gap-3">
                 <FormField
                   control={form.control}
