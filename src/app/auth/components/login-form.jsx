@@ -19,7 +19,7 @@ import { loginSchema } from "@/lib/schema";
 import { Link } from "react-router-dom";
 import { EyeOffIcon } from "lucide-react";
 import Logo from "@/assets/logo/logo";
-import useLogin from "@/hooks/auth/useLogin";
+import useLogin from "../hooks/useLogin";
 
 export function LoginForm({ className, ...props }) {
   const { loading, login } = useLogin();
