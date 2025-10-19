@@ -154,7 +154,7 @@ export function LoginForm({ className, ...props }) {
               <Button
                 variant="outline"
                 type="button"
-                className="w-full"
+                className="w-full px-3"
                 disabled
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

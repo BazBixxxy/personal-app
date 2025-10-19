@@ -8,7 +8,7 @@ export default function GoogleAuth() {
     <Button
       variant="outline"
       type="button"
-      className="w-full"
+      className="w-full px-3"
       onClick={googleOAuth}
       // disabled
     >
