@@ -35,7 +35,7 @@ export default function Hero() {
         {/* CTA section with refined spacing */}
         <div className="space-y-6">
           <div className="flex flex-col items-center gap-3">
-            <UserStack />
+            {/* <UserStack /> */}
             <p className="text-sm font-light text-foreground/60 tracking-wide">
               Join our online community
             </p>
