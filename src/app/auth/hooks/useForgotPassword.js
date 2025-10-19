@@ -1,31 +1,30 @@
+import { useState } from "react";
 import { toast } from "sonner";
-import { useAuthContext } from "@/context/auth-context";
 import { useNavigate } from "react-router-dom";
 import authApi from "@/services/api/authApi";
 
-const useLogout = () => {
+const useForgotPassword = () => {
   const navigate = useNavigate();
-  const { setAuthUser } = useAuthContext();
+  const [loading, setLoading] = useState(false);
 
-  const logout = async () => {
-    toast.promise(authApi.logout(), {
-      loading: "Logging out...",
-      success: () => {
-        setAuthUser(null);
-        localStorage.removeItem("charisUser");
-        navigate("/login");
-        return "Logout successful!";
-      },
-      error: (error) => {
-        console.error("Logout failed:", error);
-        return (
-          error.response?.data?.message || "Logout failed. Please try again."
-        );
-      },
-    });
+  const forgotPassword = async (email) => {
+    try {
+      setLoading(true);
+      await authApi.forgotPassword(email);
+      toast.success("Password reset link sent to your email.");
+      navigate("/email-sent");
+    } catch (error) {
+      console.error("Forgot password failed:", error);
+      const message =
+        error.response?.data?.message ||
+        "Failed to send reset link. Please try again.";
+      toast.error(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return { logout };
+  return { forgotPassword, loading };
 };
 
-export default useLogout;
+export default useForgotPassword;
