@@ -17,11 +17,13 @@ export default function Navbar() {
   const data = [
     { label: "Home", href: "/" },
     { label: "Articles", href: "/articles" },
-    { label: "Resources", href: "/resources" },
-    // { label: "Events", href: "/events" },
+    // { label: "Resources", href: "/resources" },
     // { label: "Conversations", href: "/conversations" },
     // { label: "Shop", href: "/shop" },
     { label: "About Us", href: "/about" },
+    ...(authUser?.isAuthor
+      ? [{ label: "Dashboard", href: "/dashboard/home" }]
+      : []),
   ];
 
   const toggleMenu = () => {
@@ -36,7 +38,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link
               to="/"
-              className="md:text-2xl font-bold transition-colors flex items-center gap-2 "
+              className="md:text-xl font-bold transition-colors flex items-center gap-2 "
             >
               <Logo />
               Charis Place
@@ -45,7 +47,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden xl:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-10 flex items-baseline gap-8">
               {data.map((item, index) => (
                 <Button key={index} variant="ghost">
                   <Link
