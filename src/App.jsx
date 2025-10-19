@@ -74,7 +74,13 @@ const App = () => {
         {/* dashboard layout */}
         <Route
           path="/dashboard"
-          element={authUser ? <DashboardLayout /> : <Navigate to={"/login"} />}
+          element={
+            authUser && authUser.isAuthor ? (
+              <DashboardLayout />
+            ) : (
+              <Navigate to={"/login"} />
+            )
+          }
         >
           <Route path="/dashboard/home" element={<DashboardHomePage />} />
           <Route path="/dashboard/articles/add" element={<NewArticlePage />} />

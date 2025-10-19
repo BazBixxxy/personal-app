@@ -2,6 +2,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import LoadingSpinner from "@/components/loading-spinner";
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 import ProfileComponent from "@/components/profile/profile-component";
+import ScrollToTop from "@/components/scroll-top";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -47,13 +48,14 @@ export default function DashboardLayout() {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-5">
             <AnimatedThemeToggler />
             <ProfileComponent />
           </div>
         </header>
         <div className="min-h-screen px-2 md:px-4 lg:px-6">
           <Suspense fallback={<LoadingSpinner />}>
+            <ScrollToTop />
             <Outlet />
           </Suspense>
         </div>
