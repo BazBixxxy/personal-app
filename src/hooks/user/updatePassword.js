@@ -1,55 +1,24 @@
-import { useAuthContext } from "@/context/auth-context";
-import userApi from "@/services/api/userApi";
-import { useState } from "react";
 import { toast } from "sonner";
+import { useState } from "react";
+import userApi from "@/services/api/userApi";
 
-const useUpdateAvatars = () => {
+const useUpdatePassword = () => {
   const [loading, setLoading] = useState(false);
-  const [loadingBanner, setLoadingBanner] = useState(false);
-  const { setAuthUser } = useAuthContext();
 
-  const updateProfilePicture = async (profilePicture) => {
+  const updatePassword = async (data) => {
     try {
       setLoading(true);
-      const res = await userApi.updateProfilePicture({ profilePicture });
-      const updatedProfilePicture = res.data.user.profilePicture;
-
-      setAuthUser((prev) => ({
-        ...prev,
-        profilePicture: updatedProfilePicture,
-      }));
-      localStorage.setItem("charisUser", JSON.stringify(res.data.user));
-
-      toast.success("Profile picture updated successfully");
+      await userApi.updatePassword(data);
+      toast.success("Password updated successfully");
     } catch (error) {
-      console.error("Error updating profile picture:", error);
-      toast.error(
-        error.response?.data?.message || "Error updating profile picture"
-      );
+      console.error("Error updating password:", error);
+      toast.error(error.response?.data?.message || "Error updating password");
     } finally {
       setLoading(false);
     }
   };
 
-  const updateBanner = async (banner) => {
-    try {
-      setLoadingBanner(true);
-      const res = await userApi.updateBanner({ banner });
-      const updatedBanner = res.data.user.banner;
-
-      setAuthUser((prev) => ({ ...prev, banner: updatedBanner }));
-      localStorage.setItem("charisUser", JSON.stringify(res.data.user));
-
-      toast.success("Banner updated successfully");
-    } catch (error) {
-      console.error("Error updating banner:", error);
-      toast.error(error.response?.data?.message || "Error updating banner");
-    } finally {
-      setLoadingBanner(false);
-    }
-  };
-
-  return { updateProfilePicture, updateBanner, loading, loadingBanner };
+  return { updatePassword, loading };
 };
 
-export default useUpdateAvatars;
+export default useUpdatePassword;
