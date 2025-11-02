@@ -4,18 +4,27 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import useCreateAritcle from "../hooks/useCreateArticle";
 
 export default function ArticleForm() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState(false);
+  const { loading, createArticle } = useCreateAritcle();
 
-  const handleSubmit = () => {
-    if (title && content) {
-      setPreview(true);
+  const handleSubmit = async () => {
+    if (!title.trim() || !content.trim()) {
+      toast.error("Please fill out title and content first.");
+      return;
     }
+    setPreview(true);
+
+    const data = { title, content, images };
+    await createArticle(data);
   };
 
   const handleReset = () => {
@@ -26,21 +35,40 @@ export default function ArticleForm() {
     setPreview(false);
   };
 
+  /** Upload logic — improved for UX consistency */
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
+    if (!files.length) return;
+
+    setUploading(true);
+    const validImages = [];
+
     files.forEach((file) => {
+      if (!file.type.startsWith("image/")) {
+        toast.error(`"${file.name}" is not a valid image`);
+        return;
+      }
       const reader = new FileReader();
-      reader.onload = (e) => {
-        setImages((prev) => [...prev, e.target.result]);
+      reader.onload = (ev) => {
+        validImages.push(ev.target.result);
+        if (validImages.length === files.length) {
+          setImages((prev) => [...prev, ...validImages]);
+          setUploading(false);
+        }
       };
       reader.readAsDataURL(file);
     });
   };
 
   const handleAddImageUrl = () => {
-    if (imageUrl) {
-      setImages((prev) => [...prev, imageUrl]);
+    if (!imageUrl.trim()) return;
+    try {
+      const url = new URL(imageUrl.trim());
+      setImages((prev) => [...prev, url.href]);
       setImageUrl("");
+      toast.success("Image added successfully");
+    } catch {
+      toast.error("Please enter a valid image URL");
     }
   };
 
@@ -60,13 +88,13 @@ export default function ArticleForm() {
               {content}
             </div>
             {images.length > 0 && (
-              <div className="mt-6 grid grid-cols-2 gap-4">
+              <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
                 {images.map((img, i) => (
                   <img
                     key={i}
                     src={img}
                     alt={`Article image ${i + 1}`}
-                    className="rounded-lg w-full"
+                    className="rounded-lg w-full object-cover"
                   />
                 ))}
               </div>
@@ -91,6 +119,7 @@ export default function ArticleForm() {
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
+            {/* Title */}
             <div>
               <Label htmlFor="title">Title</Label>
               <Input
@@ -101,6 +130,7 @@ export default function ArticleForm() {
               />
             </div>
 
+            {/* Content */}
             <div>
               <Label htmlFor="content">Content</Label>
               <Textarea
@@ -112,53 +142,76 @@ export default function ArticleForm() {
               />
             </div>
 
+            {/* Enhanced Image Upload Area */}
             <div>
               <Label>Images</Label>
               <div className="space-y-3">
-                <div>
+                <div className="flex flex-col sm:flex-row gap-2">
                   <Input
                     type="file"
                     accept="image/*"
                     multiple
+                    disabled={uploading}
                     onChange={handleFileUpload}
                   />
+                  <div className="flex gap-2 w-full">
+                    <Input
+                      value={imageUrl}
+                      onChange={(e) => setImageUrl(e.target.value)}
+                      placeholder="Or paste image URL..."
+                    />
+                    <Button
+                      type="button"
+                      onClick={handleAddImageUrl}
+                      disabled={!imageUrl.trim()}
+                    >
+                      Add
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex gap-2">
-                  <Input
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    placeholder="Or paste image URL..."
-                  />
-                  <Button type="button" onClick={handleAddImageUrl}>
-                    Add
-                  </Button>
-                </div>
-              </div>
-              {images.length > 0 && (
-                <div className="mt-4 grid grid-cols-3 gap-2">
-                  {images.map((img, i) => (
-                    <div key={i} className="relative group">
-                      <img
-                        src={img}
-                        alt={`Upload ${i + 1}`}
-                        className="rounded w-full h-24 object-cover"
-                      />
-                      <Button
-                        size="sm"
-                        variant="destructive"
-                        className="absolute top-1 right-1 opacity-0 group-hover:opacity-100"
-                        onClick={() => removeImage(i)}
+
+                {uploading && (
+                  <p className="text-sm text-muted-foreground">Uploading...</p>
+                )}
+
+                {images.length > 0 && (
+                  <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    {images.map((img, i) => (
+                      <div
+                        key={i}
+                        className="relative group rounded overflow-hidden border"
                       >
-                        ×
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              )}
+                        <img
+                          src={img}
+                          alt={`Upload ${i + 1}`}
+                          className="w-full h-28 object-cover"
+                        />
+                        {i === 0 && (
+                          <span className="absolute top-1 left-1 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                            Main
+                          </span>
+                        )}
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={() => removeImage(i)}
+                        >
+                          ×
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
-            <Button onClick={handleSubmit} className="w-full">
-              Preview Article
+            <Button
+              onClick={handleSubmit}
+              disabled={loading || uploading}
+              className="w-full"
+            >
+              {loading ? "Saving..." : "Preview Article"}
             </Button>
           </div>
         </CardContent>
