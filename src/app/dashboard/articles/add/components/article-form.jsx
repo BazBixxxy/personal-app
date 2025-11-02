@@ -6,8 +6,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import useCreateAritcle from "../hooks/useCreateArticle";
+import { useEdgeStore } from "@/context/edgestore-context"; // Assuming EdgeStore upload
 
 export default function ArticleForm() {
+  const { edgestore } = useEdgeStore();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
@@ -35,29 +37,30 @@ export default function ArticleForm() {
     setPreview(false);
   };
 
-  /** Upload logic — improved for UX consistency */
-  const handleFileUpload = (e) => {
+  // --- Upload files automatically and store their URLs ---
+  const handleFileUpload = async (e) => {
     const files = Array.from(e.target.files);
     if (!files.length) return;
 
     setUploading(true);
-    const validImages = [];
 
-    files.forEach((file) => {
+    for (const file of files) {
       if (!file.type.startsWith("image/")) {
         toast.error(`"${file.name}" is not a valid image`);
-        return;
+        continue;
       }
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        validImages.push(ev.target.result);
-        if (validImages.length === files.length) {
-          setImages((prev) => [...prev, ...validImages]);
-          setUploading(false);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
+
+      try {
+        const res = await edgestore.myPublicImages.upload({ file });
+        setImages((prev) => [...prev, res.url]);
+        toast.success(`${file.name} uploaded successfully`);
+      } catch (err) {
+        console.error("Upload error:", err);
+        toast.error(`Failed to upload ${file.name}`);
+      }
+    }
+
+    setUploading(false);
   };
 
   const handleAddImageUrl = () => {
@@ -87,6 +90,7 @@ export default function ArticleForm() {
             <div className="prose max-w-none whitespace-pre-wrap">
               {content}
             </div>
+
             {images.length > 0 && (
               <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
                 {images.map((img, i) => (
@@ -99,6 +103,7 @@ export default function ArticleForm() {
                 ))}
               </div>
             )}
+
             <div className="mt-6 flex gap-3">
               <Button onClick={() => setPreview(false)}>Edit</Button>
               <Button onClick={handleReset} variant="outline">
@@ -142,7 +147,7 @@ export default function ArticleForm() {
               />
             </div>
 
-            {/* Enhanced Image Upload Area */}
+            {/* Image Upload Area */}
             <div>
               <Label>Images</Label>
               <div className="space-y-3">
