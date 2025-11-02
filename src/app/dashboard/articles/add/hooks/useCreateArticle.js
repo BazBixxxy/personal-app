@@ -15,7 +15,7 @@ const useCreateAritcle = () => {
       toast.success("Article Created Successfully");
       navigate("/dashboard/home");
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response?.data?.message);
       console.error("Error creating article:", error);
     } finally {
       setLoading(false);

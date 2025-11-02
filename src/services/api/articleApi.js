@@ -1,3 +1,5 @@
+import { instance } from "../axios";
+
 const articleApi = {
   createArticle: (data) => {
     return instance.post("/articles", data);
