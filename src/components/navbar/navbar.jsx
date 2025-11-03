@@ -21,7 +21,7 @@ export default function Navbar() {
     // { label: "Conversations", href: "/conversations" },
     // { label: "Shop", href: "/shop" },
     { label: "About Us", href: "/about" },
-    ...(authUser?.isAuthor
+    ...(authUser?.isAdmin
       ? [{ label: "Dashboard", href: "/dashboard/home" }]
       : []),
   ];
