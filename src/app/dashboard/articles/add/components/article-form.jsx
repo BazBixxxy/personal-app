@@ -14,11 +14,11 @@ export default function ArticleForm() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [previewImages, setPreviewImages] = useState([]); // local preview (File objects or URLs)
-  const [uploadedImages, setUploadedImages] = useState([]); // URLs after upload
+  const [previewImages, setPreviewImages] = useState([]);
+  const [uploadedImages, setUploadedImages] = useState([]);
   const [imageUrlInput, setImageUrlInput] = useState("");
   const [preview, setPreview] = useState(false);
-  const [uploadingMap, setUploadingMap] = useState({}); // tracks uploading state per image
+  const [uploadingMap, setUploadingMap] = useState({});
 
   // --- handle file selection and preview ---
   const handleFileSelect = (e) => {

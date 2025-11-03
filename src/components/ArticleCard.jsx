@@ -3,9 +3,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { Share2 } from "lucide-react";
 import { formatDate, handleShare } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ArticleCard = ({ article }) => {
+  const { pathname } = useLocation();
+
   return (
     <Card className="flex flex-col hover:shadow-lg transition-shadow relative">
       <Button
@@ -46,11 +48,18 @@ const ArticleCard = ({ article }) => {
 
       <CardContent className="flex-1 flex flex-col">
         <p className="text-sm mb-4 line-clamp-3 flex-1">{article.content}</p>
-        <Link to={`/articles/${article._id}`}>
-          <Button variant="outline" className="w-full mt-auto">
-            Read More
-          </Button>
-        </Link>
+        <div className="grid gap-3">
+          <Link to={`/articles/${article._id}`}>
+            <Button className="w-full mt-auto">Read More</Button>
+          </Link>
+          {pathname.startsWith("/dashboard") && (
+            <Link to={`/dashboard/articles/${article._id}`}>
+              <Button variant="outline" className="w-full mt-auto">
+                Update Article
+              </Button>
+            </Link>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
