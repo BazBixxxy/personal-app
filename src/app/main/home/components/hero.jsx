@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import UserStack from "./user-stack";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -45,17 +46,19 @@ export default function Hero() {
         {/* CTA */}
         <div className="space-y-6">
           <div className="flex flex-col items-center gap-3">
-            <p className="text-sm sm:text-base font-light text-foreground/60 tracking-wide">
+            <p className="text-sm sm:text-base font-light text-foreground/60 tracking-wide mb-5">
               Join our online community
             </p>
           </div>
 
-          <Button
-            size="lg"
-            className="px-8 py-5 text-sm sm:text-base md:text-lg font-medium tracking-wide rounded-full hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg"
-          >
-            Read Articles
-          </Button>
+          <Link to={"/articles"}>
+            <Button
+              size="lg"
+              className="px-8 py-5 text-sm sm:text-base md:text-lg font-medium tracking-wide rounded-full hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg"
+            >
+              Read Articles
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
