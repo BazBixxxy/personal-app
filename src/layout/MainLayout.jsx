@@ -9,7 +9,7 @@ const MainLayout = () => {
   return (
     <>
       <Navbar />
-      <div className="my-16">
+      <div className="my-16 min-h-screen">
         <Suspense fallback={<LoadingSpinner />}>
           <ScrollToTop />
           <Outlet />
