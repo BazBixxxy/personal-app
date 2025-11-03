@@ -96,7 +96,10 @@ const App = () => {
             loader={articleLoader}
             element={<ArticlePage />}
           />
-          <Route path="/bookmarks" element={<BookmarksPage />} />
+          <Route
+            path="/bookmarks"
+            element={authUser ? <BookmarksPage /> : <Navigate to={"/login"} />}
+          />
         </Route>
 
         {/* dashboard layout */}
