@@ -1,5 +1,7 @@
 import React from "react";
 import ArticleCard from "@/components/ArticleCard";
+import SearchComponent from "@/components/SearchComponent";
+import Filters from "../components/Filters";
 
 const articles = [
   {
@@ -109,8 +111,16 @@ export default function DashboardHomePage() {
     <main className="py-5">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Articles</h1>
-          <p className="">Your thoughts on the word of God, prayer, and ministry</p>
+          <div>
+            <h1 className="text-4xl font-bold mb-2">Articles</h1>
+            <p className="">
+              Your thoughts on the word of God, prayer, and ministry
+            </p>
+          </div>
+          <div>
+            <SearchComponent />
+            <Filters />
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
