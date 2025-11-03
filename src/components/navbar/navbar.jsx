@@ -85,7 +85,7 @@ export default function Navbar() {
               )}
             </Button>
 
-            <LoginComponent />
+            {authUser ? <ProfileComponent /> : <LoginComponent />}
           </div>
         </div>
 
