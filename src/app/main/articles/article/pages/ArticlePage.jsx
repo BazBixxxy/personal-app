@@ -39,7 +39,7 @@ export default function ArticleReaderPage() {
             {article.title}
           </h1>
 
-          <div className="flex items-center justify-between gap-3 mb-6">
+          <div className="grid md:flex items-center justify-between gap-3 mb-6 text-muted-foreground">
             <div className="flex items-center gap-4 text-sm">
               <span>{formatDate(article.createdAt)}</span>
               <span>•</span>
@@ -96,7 +96,7 @@ export default function ArticleReaderPage() {
 
         <Separator className="my-8" />
 
-        <div className="my-5 flex items-center gap-2 justify-end">
+        <div className="my-5 flex items-center gap-2 justify-end text-sm text-muted-foreground">
           <span>Last Updated | </span>
           <span>{formatDate(article.updatedAt)}</span>
         </div>
