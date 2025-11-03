@@ -85,9 +85,6 @@ export default function DashboardHomePage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* {articles.map((article) => (
-            <ArticleCard article={article} key={article.id} />
-          ))} */}
           {loading && articles.length === 0 ? (
             <div className="col-span-full text-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto" />
@@ -103,6 +100,36 @@ export default function DashboardHomePage() {
             </div>
           ) : null}
         </div>
+
+        {articles.length > 0 && pagination.hasMore && (
+          <div className="mt-8 flex justify-center">
+            <Button
+              onClick={handleLoadMore}
+              disabled={loadingMore}
+              variant="secondary"
+              size="lg"
+              className="w-full max-w-xs"
+            >
+              {loadingMore ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary mr-2" />
+                  Loading More...
+                </>
+              ) : (
+                "Load More Articles"
+              )}
+            </Button>
+          </div>
+        )}
+
+        {articles.length > 0 && (
+          <div className="mt-4 text-center text-sm text-muted-foreground">
+            Showing {articles.length} articles
+            <span className="hidden">
+              {!pagination.hasMore && " (All articles loaded)"}
+            </span>
+          </div>
+        )}
       </div>
     </main>
   );

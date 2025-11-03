@@ -46,7 +46,7 @@ const ArticleCard = ({ article }) => {
 
       <CardContent className="flex-1 flex flex-col">
         <p className="text-sm mb-4 line-clamp-3 flex-1">{article.content}</p>
-        <Link to={`/articles/${article.id}`}>
+        <Link to={`/articles/${article._id}`}>
           <Button variant="outline" className="w-full mt-auto">
             Read More
           </Button>
