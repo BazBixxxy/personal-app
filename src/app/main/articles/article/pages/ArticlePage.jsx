@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Share2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { BookmarkButton } from "@/components/shsfui/bookmark-icon-button";
 import { useLoaderData } from "react-router-dom";
 import { useEffect } from "react";
+import BookmarkComponent from "../components/BookmarkComponent";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -61,7 +61,7 @@ export default function ArticleReaderPage() {
               <span>{calculateReadTime(article.content)}</span>
             </div>
             <div className="flex items-center gap-2">
-              <BookmarkButton />
+              <BookmarkComponent article={article} />
               <Button variant="ghost" size="icon" onClick={handleShare}>
                 <Share2 />
               </Button>
