@@ -1,18 +1,15 @@
 import articleApi from "@/services/api/articleApi";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-const useCreateAritcle = () => {
-  const navigate = useNavigate();
+const useUpdateArticle = () => {
   const [loading, setLoading] = useState(false);
 
-  const createArticle = async (data) => {
+  const updateArticle = async (id, data) => {
     try {
       setLoading(true);
-      await articleApi.createArticle(data);
-      toast.success("Article Created Successfully");
-      navigate("/dashboard/home");
+      await articleApi.updateArticle(id, data);
+      toast.success("Article updated Successfully");
     } catch (error) {
       toast.error(error.response?.data?.message);
       console.error("Error creating article:", error);
@@ -21,7 +18,7 @@ const useCreateAritcle = () => {
     }
   };
 
-  return { loading, createArticle };
+  return { loading, updateArticle };
 };
 
-export default useCreateAritcle;
+export default useUpdateArticle;
