@@ -69,14 +69,6 @@ export default function ArticleReaderPage() {
           </div>
         </div>
 
-        {article.image && (
-          <img
-            src={article.image}
-            alt={article.title}
-            className="w-full rounded-lg mb-8 shadow-sm"
-          />
-        )}
-
         <div className="prose prose-lg max-w-none">
           {article.content.split("\n\n").map((paragraph, index) => (
             <p key={index} className="mb-4 leading-relaxed">
@@ -84,6 +76,14 @@ export default function ArticleReaderPage() {
             </p>
           ))}
         </div>
+
+        {article.images.length > 0 && (
+          <img
+            src={article.images[0]}
+            alt={article.title}
+            className="w-full lg:w-1/2 rounded-lg mb-8 shadow-sm object-cover h-96"
+          />
+        )}
 
         <Separator className="my-8" />
 
