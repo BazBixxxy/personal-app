@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { BookmarkButton } from "@/components/shsfui/bookmark-icon-button";
 import bookmarkApi from "@/services/api/bookmarkApi";
+import { useAuthContext } from "@/context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const BookmarkComponent = ({ article }) => {
+  const navigate = useNavigate();
+  const { authUser } = useAuthContext();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +25,7 @@ const BookmarkComponent = ({ article }) => {
     };
 
     fetchBookmarkStatus();
-  }, [article?._id]);
+  }, [article?._id, authUser]);
 
   const toggleBookmarkStatus = async () => {
     if (!article?._id) return;
@@ -45,11 +49,18 @@ const BookmarkComponent = ({ article }) => {
     }
   };
 
+  const handleInfo = () => {
+    toast.info("Log in to bookmark articles", {
+      description: "You need to be logged in to use the bookmark feature.",
+    });
+    navigate("/login");
+  };
+
   return (
     <div className="flex items-center justify-center">
       <BookmarkButton
         initialState={isBookmarked}
-        onChange={toggleBookmarkStatus}
+        onChange={authUser ? toggleBookmarkStatus : handleInfo}
         disabled={loading}
         className="cursor-pointer"
       />
