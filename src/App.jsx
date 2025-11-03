@@ -70,7 +70,11 @@ const App = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/articles" element={<ArticlesPage />} />
-          <Route path="/articles/:id" element={<ArticlePage />} />
+          <Route
+            path="/articles/:id"
+            loader={articleLoader}
+            element={<ArticlePage />}
+          />
         </Route>
 
         {/* dashboard layout */}
