@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 import { useEffect } from "react";
 import BookmarkComponent from "../components/BookmarkComponent";
+import { handleShare } from "@/lib/utils";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -21,21 +22,6 @@ const calculateReadTime = (text) => {
   const words = text.split(/\s+/).length;
   const minutes = Math.ceil(words / wordsPerMinute);
   return `${minutes} min read`;
-};
-
-const handleShare = () => {
-  if (navigator.share) {
-    navigator
-      .share({
-        title: article.title,
-        text: article.content.substring(0, 100) + "...",
-        url: window.location.href,
-      })
-      .catch(() => {});
-  } else {
-    navigator.clipboard.writeText(window.location.href);
-    alert("Link copied to clipboard!");
-  }
 };
 
 export default function ArticleReaderPage() {
@@ -62,7 +48,11 @@ export default function ArticleReaderPage() {
             </div>
             <div className="flex items-center gap-2">
               <BookmarkComponent article={article} />
-              <Button variant="ghost" size="icon" onClick={handleShare}>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => handleShare(article)}
+              >
                 <Share2 />
               </Button>
             </div>
