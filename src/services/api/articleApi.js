@@ -7,7 +7,7 @@ const articleApi = {
   updateArticle: (id, data) => {
     return instance.patch(`/articles/${id}`, data);
   },
-  fetchArticle: (id) => {
+  fetchArticle: ({ id }) => {
     return instance.get(`/articles/${id}`);
   },
   deleteArticle: (id) => {
