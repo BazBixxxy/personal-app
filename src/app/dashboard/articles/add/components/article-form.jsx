@@ -6,77 +6,114 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import useCreateAritcle from "../hooks/useCreateArticle";
-import { useEdgeStore } from "@/context/edgestore-context"; // Assuming EdgeStore upload
+import { useEdgeStore } from "@/context/edgestore-context";
 
 export default function ArticleForm() {
   const { edgestore } = useEdgeStore();
+  const { loading, createArticle } = useCreateAritcle();
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [images, setImages] = useState([]);
-  const [imageUrl, setImageUrl] = useState("");
-  const [uploading, setUploading] = useState(false);
+  const [previewImages, setPreviewImages] = useState([]); // local preview (File objects or URLs)
+  const [uploadedImages, setUploadedImages] = useState([]); // URLs after upload
+  const [imageUrlInput, setImageUrlInput] = useState("");
   const [preview, setPreview] = useState(false);
-  const { loading, createArticle } = useCreateAritcle();
+  const [uploadingMap, setUploadingMap] = useState({}); // tracks uploading state per image
+
+  // --- handle file selection and preview ---
+  const handleFileSelect = (e) => {
+    const files = Array.from(e.target.files);
+    const previews = files.map((file) => ({
+      file,
+      preview: URL.createObjectURL(file),
+      uploadedUrl: null,
+    }));
+    setPreviewImages((prev) => [...prev, ...previews]);
+  };
+
+  // --- handle manual URL addition ---
+  const handleAddImageUrl = () => {
+    if (!imageUrlInput.trim()) return;
+    try {
+      const url = new URL(imageUrlInput.trim());
+      setPreviewImages((prev) => [
+        ...prev,
+        { file: null, preview: url.href, uploadedUrl: url.href },
+      ]);
+      setUploadedImages((prev) => [...prev, url.href]);
+      setImageUrlInput("");
+      toast.success("Image added successfully");
+    } catch {
+      toast.error("Please enter a valid URL");
+    }
+  };
+
+  // --- upload a single image ---
+  const uploadImage = async (index) => {
+    const img = previewImages[index];
+    if (!img.file) return; // already a URL
+
+    setUploadingMap((prev) => ({ ...prev, [index]: true }));
+
+    try {
+      const res = await edgestore.myPublicImages.upload({ file: img.file });
+      const updatedPreviews = [...previewImages];
+      updatedPreviews[index].uploadedUrl = res.url;
+      setPreviewImages(updatedPreviews);
+
+      setUploadedImages((prev) => [...prev, res.url]);
+      toast.success("Image uploaded successfully");
+    } catch (err) {
+      console.error("Upload error:", err);
+      toast.error("Failed to upload image");
+    } finally {
+      setUploadingMap((prev) => ({ ...prev, [index]: false }));
+    }
+  };
+
+  const removeImage = (index) => {
+    const updatedPreviews = previewImages.filter((_, i) => i !== index);
+    setPreviewImages(updatedPreviews);
+
+    const updatedUploaded = uploadedImages.filter(
+      (url) => url !== previewImages[index].uploadedUrl
+    );
+    setUploadedImages(updatedUploaded);
+  };
 
   const handleSubmit = async () => {
     if (!title.trim() || !content.trim()) {
-      toast.error("Please fill out title and content first.");
+      toast.error("Please fill out title and content");
       return;
     }
-    setPreview(true);
 
-    const data = { title, content, images };
+    // Ensure all images are uploaded
+    const notUploaded = previewImages.filter(
+      (img) => img.file && !img.uploadedUrl
+    );
+    if (notUploaded.length > 0) {
+      toast.error("Please upload all images before submitting");
+      return;
+    }
+
+    const data = {
+      title,
+      content,
+      images: uploadedImages, // only uploaded URLs
+    };
+
+    setPreview(true);
     await createArticle(data);
   };
 
   const handleReset = () => {
     setTitle("");
     setContent("");
-    setImages([]);
-    setImageUrl("");
+    setPreviewImages([]);
+    setUploadedImages([]);
+    setImageUrlInput("");
     setPreview(false);
-  };
-
-  // --- Upload files automatically and store their URLs ---
-  const handleFileUpload = async (e) => {
-    const files = Array.from(e.target.files);
-    if (!files.length) return;
-
-    setUploading(true);
-
-    for (const file of files) {
-      if (!file.type.startsWith("image/")) {
-        toast.error(`"${file.name}" is not a valid image`);
-        continue;
-      }
-
-      try {
-        const res = await edgestore.myPublicImages.upload({ file });
-        setImages((prev) => [...prev, res.url]);
-        toast.success(`${file.name} uploaded successfully`);
-      } catch (err) {
-        console.error("Upload error:", err);
-        toast.error(`Failed to upload ${file.name}`);
-      }
-    }
-
-    setUploading(false);
-  };
-
-  const handleAddImageUrl = () => {
-    if (!imageUrl.trim()) return;
-    try {
-      const url = new URL(imageUrl.trim());
-      setImages((prev) => [...prev, url.href]);
-      setImageUrl("");
-      toast.success("Image added successfully");
-    } catch {
-      toast.error("Please enter a valid image URL");
-    }
-  };
-
-  const removeImage = (index) => {
-    setImages((prev) => prev.filter((_, i) => i !== index));
+    setUploadingMap({});
   };
 
   if (preview) {
@@ -90,20 +127,18 @@ export default function ArticleForm() {
             <div className="prose max-w-none whitespace-pre-wrap">
               {content}
             </div>
-
-            {images.length > 0 && (
+            {uploadedImages.length > 0 && (
               <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
-                {images.map((img, i) => (
+                {uploadedImages.map((url, i) => (
                   <img
                     key={i}
-                    src={img}
+                    src={url}
                     alt={`Article image ${i + 1}`}
                     className="rounded-lg w-full object-cover"
                   />
                 ))}
               </div>
             )}
-
             <div className="mt-6 flex gap-3">
               <Button onClick={() => setPreview(false)}>Edit</Button>
               <Button onClick={handleReset} variant="outline">
@@ -124,7 +159,6 @@ export default function ArticleForm() {
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
-            {/* Title */}
             <div>
               <Label htmlFor="title">Title</Label>
               <Input
@@ -135,7 +169,6 @@ export default function ArticleForm() {
               />
             </div>
 
-            {/* Content */}
             <div>
               <Label htmlFor="content">Content</Label>
               <Textarea
@@ -147,7 +180,6 @@ export default function ArticleForm() {
               />
             </div>
 
-            {/* Image Upload Area */}
             <div>
               <Label>Images</Label>
               <div className="space-y-3">
@@ -156,45 +188,45 @@ export default function ArticleForm() {
                     type="file"
                     accept="image/*"
                     multiple
-                    disabled={uploading}
-                    onChange={handleFileUpload}
+                    onChange={handleFileSelect}
                   />
                   <div className="flex gap-2 w-full">
                     <Input
-                      value={imageUrl}
-                      onChange={(e) => setImageUrl(e.target.value)}
+                      value={imageUrlInput}
+                      onChange={(e) => setImageUrlInput(e.target.value)}
                       placeholder="Or paste image URL..."
                     />
                     <Button
                       type="button"
                       onClick={handleAddImageUrl}
-                      disabled={!imageUrl.trim()}
+                      disabled={!imageUrlInput.trim()}
                     >
                       Add
                     </Button>
                   </div>
                 </div>
 
-                {uploading && (
-                  <p className="text-sm text-muted-foreground">Uploading...</p>
-                )}
-
-                {images.length > 0 && (
+                {previewImages.length > 0 && (
                   <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                    {images.map((img, i) => (
+                    {previewImages.map((img, i) => (
                       <div
                         key={i}
                         className="relative group rounded overflow-hidden border"
                       >
                         <img
-                          src={img}
-                          alt={`Upload ${i + 1}`}
+                          src={img.preview}
+                          alt={`Preview ${i + 1}`}
                           className="w-full h-28 object-cover"
                         />
-                        {i === 0 && (
-                          <span className="absolute top-1 left-1 bg-primary text-white text-xs px-2 py-0.5 rounded">
-                            Main
-                          </span>
+                        {!img.uploadedUrl && img.file && (
+                          <Button
+                            size="sm"
+                            className="absolute bottom-1 left-1"
+                            onClick={() => uploadImage(i)}
+                            disabled={uploadingMap[i]}
+                          >
+                            {uploadingMap[i] ? "Uploading..." : "Upload"}
+                          </Button>
                         )}
                         <Button
                           size="sm"
@@ -213,7 +245,7 @@ export default function ArticleForm() {
 
             <Button
               onClick={handleSubmit}
-              disabled={loading || uploading}
+              disabled={loading || Object.values(uploadingMap).some(Boolean)}
               className="w-full"
             >
               {loading ? "Saving..." : "Preview Article"}
