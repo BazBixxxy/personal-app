@@ -15,7 +15,7 @@ export default function Hero() {
             <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground/70 animate-fade-in-up">
               Welcome To
             </span>
-            <span className="block bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-semibold drop-shadow-md animate-pulse-slow">
+            <span className="block bg-gradient-to-r from-primary via-primary/95 to-secondary bg-clip-text text-transparent text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-semibold drop-shadow-md animate-pulse-slow">
               Charis Place
             </span>
             <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground/80 mt-3 animate-fade-in-up [animation-delay:200ms]">
