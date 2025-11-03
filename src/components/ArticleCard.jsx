@@ -53,7 +53,7 @@ const ArticleCard = ({ article }) => {
             <Button className="w-full mt-auto">Read More</Button>
           </Link>
           {pathname.startsWith("/dashboard") && (
-            <Link to={`/dashboard/articles/${article._id}`}>
+            <Link to={`/dashboard/articles/edit/${article._id}`}>
               <Button variant="outline" className="w-full mt-auto">
                 Update Article
               </Button>

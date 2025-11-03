@@ -20,6 +20,8 @@ import ForgotPasswordPage from "./app/auth/pages/forgot-password";
 import EmailSentPage from "./app/auth/pages/email-sent";
 import { useAuthContext } from "./context/auth-context";
 import { Navigate } from "react-router-dom";
+import EditArticlePage from "./app/dashboard/articles/edit/pages/EditArticlePage";
+import { articleLoader } from "./services/loaders";
 
 const App = () => {
   const { authUser } = useAuthContext();
@@ -84,6 +86,11 @@ const App = () => {
         >
           <Route path="/dashboard/home" element={<DashboardHomePage />} />
           <Route path="/dashboard/articles/add" element={<NewArticlePage />} />
+          <Route
+            path="/dashboard/articles/edit/:id"
+            loader={articleLoader}
+            element={<EditArticlePage />}
+          />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
