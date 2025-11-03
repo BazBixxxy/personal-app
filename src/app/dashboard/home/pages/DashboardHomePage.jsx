@@ -71,7 +71,7 @@ export default function DashboardHomePage() {
   return (
     <main className="py-5">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8 flex items-center justify-between gap-2">
+        <div className="mb-8 grid md:flex items-center justify-between gap-2">
           <div>
             <h1 className="text-4xl font-bold mb-2">Articles</h1>
             <p className="">
