@@ -13,7 +13,7 @@ const articleApi = {
   deleteArticle: (id) => {
     return instance.delete(`/articles/${id}`);
   },
-  fetchArticles: (params) => {
+  fetchArticles: ({ params }) => {
     return instance.get("/articles", { params });
   },
 };

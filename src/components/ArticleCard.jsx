@@ -17,9 +17,9 @@ const ArticleCard = ({ article }) => {
         <Share2 className="h-4 w-4" />
       </Button>
 
-      {article.image && (
+      {article.images.length > 0 && (
         <img
-          src={article.image}
+          src={article.images[0]}
           alt={article.title}
           className="w-full h-48 object-cover rounded-t-lg"
         />
@@ -30,7 +30,7 @@ const ArticleCard = ({ article }) => {
           <img
             src={article.author.profilePicture}
             alt={`${article.author.firstName} ${article.author.lastName}`}
-            className="w-8 h-8 rounded-full"
+            className="w-8 h-8 rounded-full object-cover"
           />
           <div className="text-sm">
             <div className="font-medium">
