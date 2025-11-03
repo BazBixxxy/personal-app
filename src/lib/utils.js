@@ -20,12 +20,12 @@ export const handleShare = (article) => {
       .share({
         title: article.title,
         text: article.content.substring(0, 100) + "...",
-        url: "https://charisplace.com" + "/article/" + article._id,
+        url: "https://charisplace.com" + "/articles/" + article._id,
       })
       .catch(() => {});
   } else {
     navigator.clipboard.writeText(
-      "https://charisplace.com" + "/article/" + article._id
+      "https://charisplace.com" + "/articles/" + article._id
     );
     alert("Link copied to clipboard!");
   }
