@@ -6,26 +6,43 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
-import HomePage from "./app/main/home/pages/HomePage";
 import DashboardLayout from "./app/dashboard/layout/DashboardLayout";
-import NewArticlePage from "./app/dashboard/articles/add/pages/NewArticlePage";
-import DashboardHomePage from "./app/dashboard/home/pages/DashboardHomePage";
-import ArticlesPage from "./app/main/articles/pages/ArticlesPage";
-import ArticlePage from "./app/main/articles/article/pages/ArticlePage";
-import ErrorBoundary from "./pages/ErrorBoundaryPage";
-import NotFoundPage from "./pages/NotFoundPage";
+
+const DashboardHomePage = React.lazy(() =>
+  import("./app/dashboard/home/pages/DashboardHomePage")
+);
+const NewArticlePage = React.lazy(() =>
+  import("./app/dashboard/articles/add/pages/NewArticlePage")
+);
+const EditArticlePage = React.lazy(() =>
+  import("./app/dashboard/articles/edit/pages/EditArticlePage")
+);
+
+const HomePage = React.lazy(() => import("./app/main/home/pages/HomePage"));
+const ArticlesPage = React.lazy(() =>
+  import("./app/main/articles/pages/ArticlesPage")
+);
+const ArticlePage = React.lazy(() =>
+  import("./app/main/articles/article/pages/ArticlePage")
+);
+const BookmarksPage = React.lazy(() =>
+  import("./app/main/articles/bookmarks/pages/BookmarksPage")
+);
+
 import SignupPage from "./app/auth/pages/signup-page";
 import LoginPage from "./app/auth/pages/login-page";
 import ForgotPasswordPage from "./app/auth/pages/forgot-password";
 import EmailSentPage from "./app/auth/pages/email-sent";
-import { useAuthContext } from "./context/auth-context";
-import { Navigate } from "react-router-dom";
-import EditArticlePage from "./app/dashboard/articles/edit/pages/EditArticlePage";
-import { articleLoader } from "./services/loaders";
-import BookmarksPage from "./app/main/articles/bookmarks/pages/BookmarksPage";
 import GeneralPoliciesPage from "./pages/GeneralPoliciesPage";
 import TermsOfUsePage from "./pages/TermsOfUsePage";
 import PrivacyPoliciesPage from "./pages/PrivacyPoliciesPage";
+
+import ErrorBoundary from "./pages/ErrorBoundaryPage";
+import NotFoundPage from "./pages/NotFoundPage";
+
+import { useAuthContext } from "./context/auth-context";
+import { Navigate } from "react-router-dom";
+import { articleLoader } from "./services/loaders";
 
 const App = () => {
   const { authUser } = useAuthContext();
