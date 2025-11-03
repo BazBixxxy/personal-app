@@ -23,6 +23,9 @@ import { Navigate } from "react-router-dom";
 import EditArticlePage from "./app/dashboard/articles/edit/pages/EditArticlePage";
 import { articleLoader } from "./services/loaders";
 import BookmarksPage from "./app/main/articles/bookmarks/pages/BookmarksPage";
+import GeneralPoliciesPage from "./pages/GeneralPoliciesPage";
+import TermsOfUsePage from "./pages/TermsOfUsePage";
+import PrivacyPoliciesPage from "./pages/PrivacyPoliciesPage";
 
 const App = () => {
   const { authUser } = useAuthContext();
@@ -51,7 +54,7 @@ const App = () => {
           errorElement={<ErrorBoundary />}
           element={authUser ? <Navigate to={"/"} /> : <EmailSentPage />}
         />
-        {/* <Route
+        <Route
           path="/general-policies"
           errorElement={<ErrorBoundary />}
           element={<GeneralPoliciesPage />}
@@ -59,13 +62,13 @@ const App = () => {
         <Route
           path="/terms-and-conditions"
           errorElement={<ErrorBoundary />}
-          element={<TermsAndConditionsPage />}
+          element={<TermsOfUsePage />}
         />
         <Route
           path="/privacy-policies"
           errorElement={<ErrorBoundary />}
           element={<PrivacyPoliciesPage />}
-        /> */}
+        />
 
         {/* main layout */}
         <Route path="/" element={<MainLayout />}>
