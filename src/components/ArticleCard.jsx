@@ -19,7 +19,7 @@ const ArticleCard = ({ article }) => {
         <Share2 className="h-4 w-4" />
       </Button>
 
-      {article.images.length > 0 && (
+      {article?.images?.length > 0 && (
         <img
           src={article.images[0]}
           alt={article.title}
@@ -30,7 +30,7 @@ const ArticleCard = ({ article }) => {
       <CardHeader>
         <div className="flex items-center gap-2 mb-3">
           <img
-            src={article.author.profilePicture}
+            src={article?.author?.profilePicture}
             alt={`${article.author.firstName} ${article.author.lastName}`}
             className="w-8 h-8 rounded-full object-cover"
           />

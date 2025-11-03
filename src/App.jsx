@@ -22,6 +22,7 @@ import { useAuthContext } from "./context/auth-context";
 import { Navigate } from "react-router-dom";
 import EditArticlePage from "./app/dashboard/articles/edit/pages/EditArticlePage";
 import { articleLoader } from "./services/loaders";
+import BookmarksPage from "./app/main/articles/bookmarks/pages/BookmarksPage";
 
 const App = () => {
   const { authUser } = useAuthContext();
@@ -75,6 +76,7 @@ const App = () => {
             loader={articleLoader}
             element={<ArticlePage />}
           />
+          <Route path="/bookmarks" element={<BookmarksPage />} />
         </Route>
 
         {/* dashboard layout */}
@@ -104,9 +106,5 @@ const App = () => {
 
   return <RouterProvider router={router} />;
 };
-
-function wait(duration) {
-  return new Promise((resolve) => setTimeout(resolve, duration));
-}
 
 export default App;
