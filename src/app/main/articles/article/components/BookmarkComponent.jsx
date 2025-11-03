@@ -1,8 +1,6 @@
-import React from "react";
-import { BookmarkButton } from "@/components/shsfui/bookmark-icon-button";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { BookmarkButton } from "@/components/shsfui/bookmark-icon-button";
 import bookmarkApi from "@/services/api/bookmarkApi";
 
 const BookmarkComponent = ({ article }) => {
@@ -10,21 +8,25 @@ const BookmarkComponent = ({ article }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const isBookmarked = async () => {
+    const fetchBookmarkStatus = async () => {
+      if (!article?._id) return;
+
       try {
         const res = await bookmarkApi.fetchBookmark({ id: article._id });
-        const response = res.data.bookmark;
-        setIsBookmarked(true);
+        const response = res?.data?.bookmark;
+        setIsBookmarked(!!response);
       } catch (error) {
         console.error("Error checking bookmark status:", error);
-        // toast.error(error.response.data.message);
       }
     };
-    isBookmarked();
-  }, []);
+
+    fetchBookmarkStatus();
+  }, [article?._id]);
 
   const toggleBookmarkStatus = async () => {
+    if (!article?._id) return;
     setLoading(true);
+
     try {
       if (isBookmarked) {
         await bookmarkApi.deleteBookmark({ id: article._id });
@@ -44,8 +46,13 @@ const BookmarkComponent = ({ article }) => {
   };
 
   return (
-    <div>
-      <BookmarkButton />
+    <div className="flex items-center justify-center">
+      <BookmarkButton
+        initialState={isBookmarked}
+        onChange={toggleBookmarkStatus}
+        disabled={loading}
+        className="cursor-pointer"
+      />
     </div>
   );
 };

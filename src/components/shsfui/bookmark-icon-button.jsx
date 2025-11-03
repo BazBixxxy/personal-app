@@ -43,6 +43,10 @@ const BookmarkButton = React.forwardRef((props, ref) => {
 
   const [isSaved, setIsSaved] = React.useState(initialState);
 
+  React.useEffect(() => {
+    setIsSaved(initialState);
+  }, [initialState]);
+
   const handleClick = () => {
     const newState = !isSaved;
     setIsSaved(newState);
