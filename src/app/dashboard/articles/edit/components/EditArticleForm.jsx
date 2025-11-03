@@ -7,8 +7,11 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useEdgeStore } from "@/context/edgestore-context";
 import useUpdateArticle from "../hooks/useUpdateArticle";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const EditArticleForm = ({ article }) => {
+  const navigate = useNavigate();
   const { edgestore } = useEdgeStore();
   const { loading, updateArticle } = useUpdateArticle();
 
@@ -83,7 +86,11 @@ const EditArticleForm = ({ article }) => {
 
   if (preview) {
     return (
-      <div className="max-w-7xl mx-auto py-6">
+      <div className="max-w-7xl mx-auto py-6 space-y-2">
+        <Button onClick={() => navigate(-1)}>
+          <ArrowLeft />
+          <span>To Home</span>
+        </Button>
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl">{title}</CardTitle>
