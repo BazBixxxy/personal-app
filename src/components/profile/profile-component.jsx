@@ -15,8 +15,10 @@ import { useAuthContext } from "@/context/auth-context";
 import ProfileHeader from "./profile-header";
 import ProfileContent from "./profile-content";
 import useLogout from "@/app/auth/hooks/useLogout";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileComponent() {
+  const navigate = useNavigate(-1);
   const { logout } = useLogout();
   const { authUser } = useAuthContext();
 
@@ -54,7 +56,16 @@ export default function ProfileComponent() {
           <ProfileHeader />
           <ProfileContent />
         </div>
-        <DialogFooter className="border-t px-6 py-4">
+        <DialogFooter className="border-t px-6 py-4 gap-3">
+          <DialogClose asChild>
+            <Button
+              type="button"
+              variant=""
+              onClick={() => navigate("/bookmarks")}
+            >
+              Bookmarks
+            </Button>
+          </DialogClose>
           <DialogClose asChild>
             <Button
               type="button"
