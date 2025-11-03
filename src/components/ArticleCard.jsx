@@ -20,11 +20,13 @@ const ArticleCard = ({ article }) => {
       </Button>
 
       {article?.images?.length > 0 && (
-        <img
-          src={article.images[0]}
-          alt={article.title}
-          className="w-full h-48 object-cover rounded-t-lg"
-        />
+        <Link to={`/articles/${article._id}`}>
+          <img
+            src={article.images[0]}
+            alt={article.title}
+            className="w-full h-48 object-cover rounded-t-lg"
+          />
+        </Link>
       )}
 
       <CardHeader>
@@ -43,7 +45,11 @@ const ArticleCard = ({ article }) => {
             </div>
           </div>
         </div>
-        <CardTitle className="text-xl line-clamp-2">{article.title}</CardTitle>
+        <Link to={`/articles/${article._id}`}>
+          <CardTitle className="text-xl line-clamp-2 hover:text-muted-foreground">
+            {article.title}
+          </CardTitle>
+        </Link>
       </CardHeader>
 
       <CardContent className="flex-1 flex flex-col">
