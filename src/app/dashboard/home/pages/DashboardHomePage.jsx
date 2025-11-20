@@ -8,6 +8,7 @@ import { useCallback } from "react";
 import articleApi from "@/services/api/articleApi";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function DashboardHomePage() {
   const [loading, setLoading] = useState(false);
